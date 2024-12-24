@@ -1,0 +1,59 @@
+---
+// src/components/Recruiters.astro
+import { Image } from "astro:assets";
+
+// Log available paths to debug
+const recruiterImages = import.meta.glob("../assets/recruiters/*.png");
+
+// Your recruiters array should just use numbers 1-17
+const recruitersArray = Array.from(
+  { length: 16 },
+  (_, i) => `image ${i + 1}.png`
+);
+---
+
+<div
+  class="flex flex-row gap-24 py-16 overflow-x-auto whitespace-nowrap scrollbar-hide"
+  id="recruiters-container"
+>
+  {
+    recruitersArray.map(async (imageName) => {
+      try {
+        const imagePath = `../assets/recruiters/${imageName}`;
+        const imageModule = await recruiterImages[imagePath]();
+
+        return (
+          <Image
+            src={(imageModule as { default: string }).default}
+            alt={`Recruiter ${imageName}`}
+            width={120}
+            height={80}
+            class="object-contain"
+          />
+        );
+      } catch (error) {
+        console.error(`Error loading image ${imageName}:`, error);
+        return null;
+      }
+    })
+  }
+</div>
+
+<script>
+  const container = document.getElementById("recruiters-container");
+  let scrollAmount = 0;
+
+  function autoScroll() {
+    if (!container) return;
+    scrollAmount += 1;
+    if (scrollAmount >= container.scrollWidth - container.clientWidth) {
+      scrollAmount = 0;
+    }
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+  }
+
+  setInterval(autoScroll, 50); // Adjust the interval as needed
+</script>

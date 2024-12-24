@@ -1,0 +1,59 @@
+---
+import collegeLogo from '../assets/collegeLogo.png';
+const title = "S.D. College of Pharmacy & Vocational Studies";
+const subTitle = "Bhopa Road, Muzaffarnagar, Uttar Pradesh 251001";
+const affiliation = "Affiliated to Dr. A.P.J. Abdul Kalam Technical University, Lucknow";
+
+const loginText = "AKTU Login";
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Admission", href: "/admission" },
+  { name: "Contact Us", href: "/contact" },
+  { name: "Faculty", href: "/faculty" },
+  { name: "Academic", href: "/academic" },
+];
+
+
+const pathName = new URL(Astro.request.url).pathname;
+const currentPath = pathName.slice(1)
+
+---
+
+<header class=" bg-navy-blue">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between w-full p-4 md:p-8">
+        <div class="flex gap-4 items-center mb-4 md:mb-0">
+            <img class="w-16 h-16 md:w-20 md:h-20 rounded flex-none" src={collegeLogo.src} alt="college logo" fetchpriority="high"/>
+            <div class="flex flex-col space-y-2 text-center md:text-left">
+                <h1 class="font-oswald text-2xl md:text-3xl text-white">{title}</h1>
+                <h2 class="subHeading text-sm md:text-md">{subTitle}</h2>
+                <h3 class="subHeading text-xs md:text-sm">{affiliation}</h3>
+            </div>
+        </div>
+        <nav class="hidden lg:flex space-y-2 md:space-y-0 md:space-x-10 font-oswald text-lg">
+            {navLinks.map((link) => 
+                {
+                    const isActive = currentPath === link.href.slice(1);
+                    return <a href={link.href} class={isActive ? "active tracking-wide":"text-white tracking-wide hoverEffect" }>{link.name}</a>
+                }
+            )}
+        </nav>
+        <div class="mt-4 md:mt-0">
+            <a href="#" class="subHeading text-lg hoverEffect">{loginText}</a>
+        </div>
+    </div>
+</header>
+
+<style>
+    .subHeading{
+        @apply font-oswald text-white tracking-wide;
+    }
+
+    .hoverEffect{
+        @apply hover:text-yellow-400 transition delay-100 ease-in;
+    }
+
+    .active{
+        @apply text-yellow-400;
+    }
+</style>

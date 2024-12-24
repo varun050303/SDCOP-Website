@@ -1,0 +1,235 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface FacultyMember {
+  src: ImageMetadata;
+  name: string;
+  position: string;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/faculties/*.jpeg"
+);
+
+const faculties: FacultyMember[] = [
+  {
+    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
+    name: "Bhuwnendra",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
+    name: "Shafqat Zaidi",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
+    name: "Bhuwnendra",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
+    name: "Shafqat Zaidi",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
+    name: "Bhuwnendra",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
+    name: "Shafqat Zaidi",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
+    name: "Bhuwnendra",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
+    name: "Shafqat Zaidi",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
+    name: "Bhuwnendra",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
+    name: "Shafqat Zaidi",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
+    name: "Bhuwnendra",
+    position: "Associate Professor",
+  },
+  {
+    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
+    name: "Shafqat Zaidi",
+    position: "Associate Professor",
+  },
+  // ... more faculty members
+];
+---
+
+<div class="relative w-full px-16">
+  <div class="faculty-container overflow-hidden" id="facultyCarousel">
+    <div
+      class="faculty-carousel flex flex-nowrap transition-transform duration-300 ease-in-out"
+    >
+      {
+        faculties.map((faculty) => (
+          <div class="faculty-card min-w-[200px] w-[200px] mx-4">
+            <div class="image-wrapper relative">
+              <Image
+                src={faculty.src}
+                alt={faculty.name}
+                class="faculty-image w-full h-[200px] object-cover rounded-lg shadow-xl"
+                width={200}
+                height={200}
+              />
+              <div class="overlay absolute inset-0 bg-black opacity-20 rounded-lg transition-opacity duration-300 hover:opacity-0" />
+            </div>
+            <div class="mt-4">
+              <h3 class="faculty-name text-white font-nunito text-lg">
+                {faculty.name}
+              </h3>
+              <p class="faculty-position text-gray-100 italic text-base">
+                {faculty.position}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <button
+    id="prev-button-faculty"
+    class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-sm p-2 rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed z-10"
+    aria-label="Previous slide"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+    </svg>
+  </button>
+
+  <button
+    id="next-button-faculty"
+    class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-sm p-2 rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed z-10"
+    aria-label="Next slide"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  function initializeCarousel() {
+    const container = document.getElementById("facultyCarousel");
+    const carousel = container?.querySelector(".faculty-carousel");
+    const prevButton = document.getElementById("prev-button-faculty");
+    const nextButton = document.getElementById("next-button-faculty");
+
+    if (!container || !carousel || !prevButton || !nextButton) {
+      console.error("Missing elements", {
+        container,
+        carousel,
+        prevButton,
+        nextButton,
+      });
+      return;
+    }
+
+    const slides = Array.from(carousel.children);
+    const slideWidth = 208; // Adjusted width with margin
+    let currentSlide = 0;
+
+    const updateSlidePosition = () => {
+      const offset = currentSlide * slideWidth;
+      carousel.style.transform = `translateX(-${offset}px)`;
+    };
+
+    const nextSlide = () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlidePosition();
+    };
+
+    const prevSlide = () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlidePosition();
+    };
+
+    prevButton.addEventListener("click", prevSlide);
+    nextButton.addEventListener("click", nextSlide);
+
+    // Autoplay functionality
+    let carouselInterval: number;
+    function startAutoplay() {
+      carouselInterval = setInterval(nextSlide, 5000); // Autoplay interval
+    }
+
+    function stopAutoplay() {
+      clearInterval(carouselInterval);
+    }
+
+    container.addEventListener("mouseenter", stopAutoplay);
+    container.addEventListener("mouseleave", startAutoplay);
+
+    // Touch events for mobile swipe functionality
+    let touchStartX = 0;
+    let touchEndX = 0;
+    container.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    container.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > 50) {
+        prevSlide();
+      }
+    });
+
+    // Initialize autoplay
+    startAutoplay();
+
+    // Resize event to adjust visible slides
+    window.addEventListener("resize", () => {
+      const newVisibleSlides = Math.floor(container.clientWidth / slideWidth);
+      const newMaxSlide = Math.max(0, slides.length - newVisibleSlides);
+      currentSlide = Math.min(currentSlide, newMaxSlide);
+      updateSlidePosition();
+    });
+  }
+
+  // Initialize carousel when the DOM is loaded
+  document.addEventListener("DOMContentLoaded", initializeCarousel);
+</script>

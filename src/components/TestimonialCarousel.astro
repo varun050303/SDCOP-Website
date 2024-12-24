@@ -1,0 +1,179 @@
+---
+import { Image } from "astro:assets";
+import data from "../../data.json";
+import Section from "./Section.astro";
+
+const { testimonials } = data.college;
+---
+
+<div class="relative mx-auto w-full overflow-hidden group">
+  <div
+    id="carousel-container-testimonial"
+    class="flex transition-transform duration-500 ease-in-out w-full"
+    style="transform: translateX(0);"
+  >
+    {
+      testimonials.map((testimonial) => (
+        <div class="slides-container flex flex-col md:flex-row items-center md:place-content-center justify-between w-full flex-shrink-0 gap-6 p-6 rounded-lg mx-auto">
+          {/* Left Side: Image */}
+          <div class="overflow-hidden w-40 h-40 md:w-48 md:h-48 flex-shrink-0">
+            <Image
+              src={testimonial.src}
+              alt={testimonial.alt}
+              width="200"
+              height="200"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Right Side: Text Block */}
+          <div>
+            <Section
+              background="green"
+              classes="rounded-lg max-w-3xl px-6 pb-14"
+            >
+              <blockquote class="text-lg font-nunito text-white">
+                {testimonial.quote}
+              </blockquote>
+              <div class="text-right">
+                <p class="text-sm text-gray-200 mt-4 font-medium font-nunito">
+                  – <cite>{testimonial.name}</cite>
+                </p>
+                <span class="text-white font-nunito">
+                  {testimonial.position}
+                </span>
+              </div>
+            </Section>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Navigation Buttons */}
+  <button
+    id="prev-button"
+    class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+    aria-label="Previous slide"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+    </svg>
+  </button>
+
+  <button
+    id="next-button"
+    class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+    aria-label="Next slide"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+    </svg>
+  </button>
+  <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+    {
+      testimonials.map((_, index) => (
+        <button
+          class="w-2 h-2 rounded-full bg-green-600 hover:bg-green/80 transition-colors duration-300 indicator-dot cursor-pointer"
+          data-index={index}
+          aria-label={`Go to slide ${index + 1}`}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const container = document.getElementById("carousel-container-testimonial");
+  const prevButton = document.getElementById("prev-button");
+  const nextButton = document.getElementById("next-button");
+  const dots = document.querySelectorAll(".indicator-dot");
+  const slides = document.querySelectorAll(".slides-container");
+  let autoplayInterval: number;
+
+  function updateSlidePosition() {
+    if (!container) return;
+    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("bg-yellow-600", index === currentSlide);
+    });
+  }
+
+  function goToSlide(index: number) {
+    currentSlide = index;
+    updateSlidePosition();
+  }
+
+  function nextSlide() {
+    if (!slides) return;
+    currentSlide = (currentSlide + 1) % slides.length; //0
+    updateSlidePosition();
+  }
+
+  function prevSlide() {
+    if (!slides) return;
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateSlidePosition();
+  }
+
+  // Event listeners
+  prevButton?.addEventListener("click", prevSlide);
+  nextButton?.addEventListener("click", nextSlide);
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => goToSlide(index));
+  });
+
+  // Autoplay functionality
+  function startAutoplay() {
+    autoplayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+  }
+
+  // Start autoplay
+  startAutoplay();
+
+  // Pause autoplay on hover
+  container?.addEventListener("mouseenter", stopAutoplay);
+  container?.addEventListener("mouseleave", startAutoplay);
+
+  // Touch support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  container?.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  container?.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) {
+      nextSlide();
+    } else if (touchEndX - touchStartX > 50) {
+      prevSlide();
+    }
+  });
+</script>

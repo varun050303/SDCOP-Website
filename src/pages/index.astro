@@ -1,11 +1,322 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Carousel from "../components/Carousel.astro";
+import Layout from "../layouts/Layout.astro";
+import campusStudents from "../assets/hero-section/campus_students.jpg";
+import Section from "../components/Section.astro";
+import collegeCampus from "../assets/campus/college_campus.jpg";
+import ecoLocation from "../assets/eco-location.png";
+import collegeLab from "../assets/campus/college_laboratory.png";
+import collegeGarden from "../assets/campus/college_garden.jpg";
+import pharmacyCouncil from "../assets/organizations/pharmacy-council-of-india.png";
+import boardOfTechnicalEd from "../assets/organizations/board-of-technical-education.png";
+import ministryOfHealth from "../assets/organizations/ministry-of-health-family.png";
+import bPharmaImg from "../assets/courses/BPharm-logo.png";
+import mPharmaImg from "../assets/courses/MPharm-logo.png";
+import dPharmaImg from "../assets/courses/DPharm-logo.png";
+import quoteSign from "../assets/quote-open.png";
+import { Image } from "astro:assets";
+import data from "../../data.json";
+import TestimonialCarousel from "../components/TestimonialCarousel.astro";
+import Recruiters from "../components/Recruiters.astro";
+import { map } from "astro:schema";
+import FacultyCarousel from "../components/FacultyCarousel.astro";
+const images = [
+  {
+    src: campusStudents.src,
+    alt: "Students on campus",
+    cardTitle: "25 Years of Experience",
+    cardDescription:
+      "SDCOP & VS emphasize practical knowledge and self-employment skills, preparing students for successful careers in pharmacy and related fields.",
+    cardButtons: [
+      {
+        label: "Contact Us",
+        type: "secondary",
+      },
+      {
+        label: "Apply Now",
+        type: "primary",
+      },
+    ],
+  },
+];
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const courses = [
+  {
+    name: "B.Pharma",
+    duration: "4 Yrs.",
+    courseType: "Full time",
+    img: bPharmaImg,
+  },
+  {
+    name: "M.Pharma",
+    duration: "2 Yrs.",
+    courseType: "Full time",
+    img: mPharmaImg,
+  },
+  {
+    name: "D.Pharma",
+    duration: "2 Yrs.",
+    courseType: "Full time",
+    img: dPharmaImg,
+  },
+];
+
+const organizations = [
+  {
+    src: pharmacyCouncil,
+    alt: "Pharmacy Council of India",
+    name: "Pharmacy Council of India, New Delhi",
+  },
+  {
+    src: boardOfTechnicalEd,
+    alt: "Board of Technical Education",
+    name: "Board of Technical Education, Lucknow",
+  },
+  {
+    src: ministryOfHealth,
+    alt: "Ministry of Health and Family Welfare",
+    name: "Ministry of Health & Family Welfare, New Delhi",
+  },
+];
+
+// Import all images
+const imageFiles = import.meta.glob(
+  "/src/assets/campus/college_infrastructure_*.jpg",
+  { eager: true }
+);
+
+// Define your card details separately
+const cardDetails = [
+  {
+    id: 1,
+    title: "Main Building",
+    description: "State-of-the-art main campus building",
+    buttons: [
+      { type: "primary", label: "Learn More" },
+      { type: "secondary", label: "Take Tour" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Library Complex",
+    description: "Modern library with extensive collection",
+    buttons: [{ type: "primary", label: "View Collection" }],
+  },
+  // Add more card details as needed
+];
+
+// Combine images with card details
+const campusImages = await Promise.all(
+  Object.entries(imageFiles).map(([path, file]) => {
+    // Extract number from filename (e.g., "college_infrastructure_1.jpg" -> "1")
+    const numberMatch = path.match(/infrastructure_(\d+)\.jpg$/);
+    const number = numberMatch ? parseInt(numberMatch[1]) : 0;
+
+    // Find matching card details
+    const details = cardDetails.find((card) => card.id === number) || {
+      title: `Image ${number}`,
+      description: "Campus view",
+    };
+
+    return {
+      src: file.default.src, // Access the processed image src
+      alt: details.title,
+      cardTitle: details.title,
+      cardDescription: details.description,
+    };
+  })
+);
+
+// Sort images by their number if needed
+images.sort((a, b) => {
+  const getNum = (src) => parseInt(src.match(/infrastructure_(\d+)/)[1]);
+  return getNum(a.src) - getNum(b.src);
+});
 ---
 
 <Layout>
-	<Welcome />
+  <main class="flex-1">
+    <Carousel images={images} instanceId="hero-section" />
+    <Section background="green">
+      <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
+        <div class="space-y-12 p-10 order-2 md:order-1">
+          <div>
+            <h2 class="heading text-white">Institute</h2>
+            <p class="text text-white mt-5">{data.college.about}</p>
+          </div>
+          <button class="px-8 py-3 button">Learn More</button>
+        </div>
+        <div class="order-1 md:order-2">
+          <img src={collegeCampus.src} />
+        </div>
+      </div>
+    </Section>
+    <Section background="white">
+      <div class="text-center">
+        <h2 class="heading text-dark-blue">Approved By</h2>
+      </div>
+      <div class="grid grid-cols-3">
+        {
+          organizations.map((orgn) => {
+            return (
+              <div class="mt-14 flex flex-col items-center">
+                <div class="w-52 h-52 mx-auto">
+                  <Image src={orgn.src} alt={orgn.alt} />
+                </div>
+                <div class="mt-6">
+                  <p class="text-pretty text-center text-2xl font-oswald">
+                    {orgn.name}
+                  </p>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </Section>
+    <Section background="green">
+      <div class="text-center">
+        <h2 class="heading text-white">Our Vision</h2>
+      </div>
+
+      <div class="max-w-4xl text-center mx-auto relative">
+        <Image
+          class="absolute -top-3 -left-14"
+          src={quoteSign}
+          alt="quote sign"
+          width="50"
+        />
+        <Image
+          class="rotate-180 absolute -bottom-3 right-10"
+          src={quoteSign}
+          alt="quote sign"
+          width="50"
+        />
+        <p class="mt-12 font-nunito font-[500] text-2xl text-white leading-9">
+          {data.college.quotes.vision}
+        </p>
+      </div>
+    </Section>
+    <Section background="white">
+      <TestimonialCarousel />
+    </Section>
+    <Section background="green">
+      <div class="text-center">
+        <h2 class="heading text-white">Our Mission</h2>
+      </div>
+
+      <div class="max-w-4xl text-center mx-auto relative">
+        <Image
+          class="absolute -top-3 -left-16"
+          src={quoteSign}
+          alt="quote sign"
+          width="50"
+        />
+        <Image
+          class="rotate-180 absolute -bottom-3 -right-16"
+          src={quoteSign}
+          alt="quote sign"
+          width="50"
+        />
+        <p class="mt-12 font-nunito font-[500] text-2xl text-white leading-9">
+          {data.college.quotes.mission}
+        </p>
+      </div>
+    </Section>
+    <Section background="white">
+      <div class="text-left">
+        <h2 class="heading text-dark-blue">Where Our Alumni Work</h2>
+      </div>
+      <div class="container-recruitment">
+        <Recruiters />
+      </div>
+    </Section>
+    <Section background="green">
+      <div class="text-center">
+        <h2 class="heading text-white">Courses We Offer</h2>
+      </div>
+
+      <div class="grid grid-cols-3 items-center mt-16">
+        {
+          courses.map((course) => {
+            return (
+              <div class="place-self-center text-center">
+                <Image
+                  src={course.img}
+                  alt={course.name}
+                  width={200}
+                  height={200}
+                />
+                <p class="font-nunito text-navy-blue font-semibold mt-3">
+                  Duration :
+                  <span class="text-white">&nbsp;{course.duration}</span>
+                  <span class="text-white">[{course.courseType}]</span>
+                </p>
+
+                <button class="px-6 py-3 text-center mt-6 text-sm button">
+                  Learn More
+                </button>
+              </div>
+            );
+          })
+        }
+      </div>
+    </Section>
+    <Section background="white">
+      <div class="text-left mb-12">
+        <h2 class="heading text-navy-blue">Campus and Infrastructure</h2>
+      </div>
+      <Carousel images={campusImages} instanceId="campus" />
+    </Section>
+    <Section background="green">
+      <div class="text-left mb-12">
+        <h2 class="heading text-white">Meet Our Faculty</h2>
+      </div>
+      <FacultyCarousel />
+    </Section>
+    <Section background="white">
+      <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
+        <div class="space-y-12 p-10 order-2 md:order-1">
+          <div class="max-w-4xl">
+            <h2 class="heading text-navy-blue">Convenient Location</h2>
+            <p class="text mt-5 text-navy-blue">
+              The institute is located in a <span
+                class="bg-yellow-400 text-black"
+                >peaceful & Pollution free environment</span
+              >, which has an attractive building comprising of administrative
+              block, Lecture halls,<span class="bg-yellow-400 text-black">
+                laboratories
+              </span>, Library, <span class="bg-yellow-400 text-black"
+                >Medicinal garden,</span
+              >
+              Lush green lawns & play grounds.
+            </p>
+            <br />
+            <p class="text mt-5 text-navy-blue">
+              The institute is just 2 Km from main <span
+                class="bg-yellow-400 text-black"
+                >Roadways Bus Stand & 1 Km from Railway Station</span
+              > of Muzaffarnagar.
+            </p>
+          </div>
+        </div>
+        <div class="order-1 md:order-2 max-w-xl place-self-center">
+          <Image src={ecoLocation} alt={"eco location"} />
+        </div>
+      </div>
+    </Section>
+  </main>
+
+  <style>
+    .heading {
+      @apply font-oswald text-[40px] font-[500] tracking-wide;
+    }
+    .text {
+      @apply text-2xl font-nunito leading-9;
+    }
+
+    .button {
+      @apply bg-navy-blue rounded-full text-white drop-shadow-xl hover:underline hover:opacity-80 hover:transform hover:translate-y-0.5;
+    }
+  </style>
 </Layout>

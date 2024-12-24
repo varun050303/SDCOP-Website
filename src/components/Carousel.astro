@@ -1,0 +1,210 @@
+---
+interface Button {
+  type: string;
+  label: string;
+}
+
+interface Props {
+  instanceId: string;
+  images: {
+    src: string;
+    alt: string;
+    cardTitle?: string;
+    cardDescription?: string;
+    cardButtons?: Button[];
+  }[];
+  autoplayInterval?: number;
+}
+
+const { instanceId, images, autoplayInterval = 5000 } = Astro.props;
+const uniqueId = (suffix: string) => `${instanceId}-${suffix}`;
+---
+
+<div id={uniqueId("carousel")} class="relative mx-auto w-full overflow-hidden group">
+  <div
+    id={uniqueId("carousel-container")}
+    class="flex transition-transform duration-500 ease-in-out"
+    data-instance-id={instanceId}
+    data-autoplay-interval={autoplayInterval}
+  >
+    {images.map((image, index) => (
+      <div class="w-full flex-shrink-0 relative" key={index}>
+        <img
+          src={image.src}
+          alt={image.alt}
+          class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
+        />
+        {(image.cardTitle || image.cardDescription) && (
+          <div class="absolute bottom-40 left-20 bg-white/60 backdrop-blur-sm rounded-lg p-6 shadow-lg w-[80%] max-w-md">
+            {image.cardTitle && (
+              <h3 class="text-4xl font-oswald font-[500] text-dark-blue mb-2">
+                {image.cardTitle}
+              </h3>
+            )}
+            {image.cardDescription && (
+              <p class="text-gray-600 font-nunito mt-4">
+                {image.cardDescription}
+              </p>
+            )}
+            {image.cardButtons && (
+              <div class="mt-12 space-x-5">
+                {image.cardButtons.map((button, buttonIndex) => (
+                  <button
+                    key={buttonIndex}
+                    class={`px-6 py-3 rounded-full font-nunito ${
+                      button.type === "primary"
+                        ? "bg-dark-blue text-white"
+                        : "bg-gray-400 text-white"
+                    } mr-2`}
+                  >
+                    {button.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <button
+    id={uniqueId("prev-button")}
+    class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    aria-label="Previous slide"
+  >
+  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke-width="1.5"
+  stroke="currentColor"
+  class="w-6 h-6"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+</svg>
+
+  </button>
+
+  <button
+    id={uniqueId("next-button")}
+    class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    aria-label="Next slide"
+  >
+  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke-width="1.5"
+  stroke="currentColor"
+  class="w-6 h-6"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+</svg>
+
+  </button>
+
+  <div id={uniqueId("indicators")} class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+    {images.map((_, index) => (
+      <button
+        key={index}
+        class="w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-colors duration-300 indicator-dot"
+        data-index={index}
+        aria-label={`Go to slide ${index + 1}`}
+      />
+    ))}
+  </div>
+</div>
+
+<script>
+  function initializeCarousel(container: HTMLElement) {
+    const instanceId = container.dataset.instanceId;
+    const autoplayInterval = parseInt(container.dataset.autoplayInterval || "5000");
+    
+    const prevButton = document.getElementById(`${instanceId}-prev-button`);
+    const nextButton = document.getElementById(`${instanceId}-next-button`);
+    const dots = document.querySelectorAll(`#${instanceId}-indicators .indicator-dot`);
+    const slides = container.children;
+    let carouselInterval: number;
+    let currentSlide = 0;
+
+    function updateSlidePosition() {
+      container.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("bg-white", index === currentSlide);
+      });
+    }
+
+    function goToSlide(index: number) {
+      currentSlide = index;
+      updateSlidePosition();
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlidePosition();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlidePosition();
+    }
+
+    // Event listeners
+    prevButton?.addEventListener("click", prevSlide);
+    nextButton?.addEventListener("click", nextSlide);
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => goToSlide(index));
+    });
+
+    // Autoplay functionality
+    function startAutoplay() {
+      carouselInterval = setInterval(nextSlide, autoplayInterval);
+    }
+
+    function stopAutoplay() {
+      clearInterval(carouselInterval);
+    }
+
+    container.addEventListener("mouseenter", stopAutoplay);
+    container.addEventListener("mouseleave", startAutoplay);
+
+    // Touch events
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    container.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > 50) {
+        prevSlide();
+      }
+    });
+
+    // Initialize autoplay
+    if (autoplayInterval > 0) {
+      startAutoplay();
+    }
+  }
+
+  // Initialize all carousels on the page
+  document.addEventListener("DOMContentLoaded", () => {
+    const carousels = document.querySelectorAll("[data-instance-id]");
+    carousels.forEach((carousel) => {
+      if (carousel instanceof HTMLElement) {
+        initializeCarousel(carousel);
+      }
+    });
+  });
+</script>

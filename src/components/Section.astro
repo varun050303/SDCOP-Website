@@ -1,0 +1,21 @@
+---
+import greenBg from "../assets/green_bg.png";
+import whiteBg from "../assets/noise_bg.png";
+interface Props {
+  background: string;
+  classes?: string;
+}
+
+const { background, classes } = Astro.props;
+---
+
+<section
+  class=`w-full bg-cover bg-no-repeat pt-14 pb-16 ${classes}`
+  style={{
+    backgroundImage: `url('${background === "green" ? greenBg.src : whiteBg.src}')`,
+  }}
+>
+  <div class="container mx-auto px-4">
+    <slot />
+  </div>
+</section>
