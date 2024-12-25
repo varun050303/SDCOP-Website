@@ -1,0 +1,141 @@
+---
+const menuItems = [
+  { title: "Home", href: "/" },
+  { title: "About", href: "/about" },
+  { title: "Services", href: "/services" },
+  { title: "Contact", href: "/contact" },
+];
+---
+
+<style>
+  /* General styling */
+  .burger-menu {
+    position: relative;
+    z-index: 20;
+  }
+
+  /* Burger button */
+  .burger-icon {
+    cursor: pointer;
+    width: 35px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .burger-icon span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .burger-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .burger-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Side drawer */
+  .side-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    background: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    z-index: 15;
+  }
+
+  .side-drawer.open {
+    transform: translateX(0);
+  }
+
+  .side-drawer a {
+    text-decoration: none;
+    color: #333;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+  }
+
+  .side-drawer a:hover {
+    color: #0077ff;
+  }
+
+  /* Backdrop */
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+  }
+
+  .backdrop.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Hide on large screens */
+  @media (min-width: 768px) {
+    .burger-menu {
+      display: none;
+    }
+  }
+</style>
+
+<div class="burger-menu">
+  <!-- Burger Icon -->
+  <div class="burger-icon" id="burger-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Backdrop -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Side Drawer -->
+  <div class="side-drawer" id="side-drawer">
+    {menuItems.map((item) => <a href={item.href}>{item.title}</a>)}
+  </div>
+</div>
+
+<script>
+  const burgerIcon = document.getElementById("burger-icon");
+  const sideDrawer = document.getElementById("side-drawer");
+  const backdrop = document.getElementById("backdrop");
+
+  burgerIcon?.addEventListener("click", () => {
+    const isOpen = burgerIcon.classList.toggle("open");
+    sideDrawer?.classList.toggle("open", isOpen);
+    backdrop?.classList.toggle("open", isOpen);
+  });
+
+  backdrop?.addEventListener("click", () => {
+    burgerIcon?.classList.remove("open");
+    sideDrawer?.classList.remove("open");
+    backdrop.classList.remove("open");
+  });
+</script>

@@ -10,6 +10,8 @@ import collegeGarden from "../assets/campus/college_garden.jpg";
 import pharmacyCouncil from "../assets/organizations/pharmacy-council-of-india.png";
 import boardOfTechnicalEd from "../assets/organizations/board-of-technical-education.png";
 import ministryOfHealth from "../assets/organizations/ministry-of-health-family.png";
+import logoAKTU from "../assets/organizations/AKTU_Logo.png";
+import radioSDMzn from "../assets/organizations/SD_Logo.png";
 import bPharmaImg from "../assets/courses/BPharm-logo.png";
 import mPharmaImg from "../assets/courses/MPharm-logo.png";
 import dPharmaImg from "../assets/courses/DPharm-logo.png";
@@ -31,10 +33,12 @@ const images = [
       {
         label: "Contact Us",
         type: "secondary",
+        link: "/contact",
       },
       {
         label: "Apply Now",
         type: "primary",
+        link: "/admission",
       },
     ],
   },
@@ -76,6 +80,16 @@ const organizations = [
     src: ministryOfHealth,
     alt: "Ministry of Health and Family Welfare",
     name: "Ministry of Health & Family Welfare, New Delhi",
+  },
+  {
+    src: radioSDMzn,
+    alt: "Radio SD MZN",
+    name: "Radio SD 90.8FM",
+  },
+  {
+    src: logoAKTU,
+    alt: "APJ Abdul Kalam Technical University",
+    name: "Dr APJ Abdul Kalam Technical University (AKTU), Lucknow",
   },
 ];
 
@@ -144,7 +158,9 @@ images.sort((a, b) => {
             <h2 class="heading text-white">Institute</h2>
             <p class="text text-white mt-5">{data.college.about}</p>
           </div>
-          <button class="px-8 py-3 button">Learn More</button>
+          <button class="px-8 py-3 button"
+            ><a href="/about">Learn More</a></button
+          >
         </div>
         <div class="order-1 md:order-2">
           <img src={collegeCampus.src} />
@@ -153,14 +169,14 @@ images.sort((a, b) => {
     </Section>
     <Section background="white">
       <div class="text-center">
-        <h2 class="heading text-dark-blue">Approved By</h2>
+        <h2 class="heading text-dark-blue">Approved & Affiliated By</h2>
       </div>
-      <div class="grid grid-cols-3">
+      <div class="grid grid-cols-5">
         {
           organizations.map((orgn) => {
             return (
               <div class="mt-14 flex flex-col items-center">
-                <div class="w-52 h-52 mx-auto">
+                <div class="w-36 h-36 mx-auto">
                   <Image src={orgn.src} alt={orgn.alt} />
                 </div>
                 <div class="mt-6">
@@ -254,7 +270,7 @@ images.sort((a, b) => {
                 </p>
 
                 <button class="px-6 py-3 text-center mt-6 text-sm button">
-                  Learn More
+                  <a href="/admission">Learn More</a>
                 </button>
               </div>
             );

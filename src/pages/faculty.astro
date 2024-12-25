@@ -1,8 +1,184 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import { Image } from "astro:assets";
+import Section from "../components/Section.astro";
+import Layout from "../layouts/Layout.astro";
+import arvindKumarImg from "../assets/faculties/arvind-kumar.png";
+import vaishaliImg from "../assets/faculties/vaishali.png";
+
+const facultyData = [
+  {
+    name: "Dr. Arvind Kumar",
+    specialization: "Pharmaceutical Chemistry",
+    designation: "Director",
+    details: {
+      areaOfInterest: "Pharmacognosy, Herbal Drug Technology, Phytochemistry",
+      experience: "16 Years Teaching, 2 Years Industry",
+      papers: "National: 16, International: 4",
+      conferences: "Attended: 12, Organized: 1",
+      courses:
+        "Pharmacognosy, Pharmaceutical Microbiology, Environmental Science",
+    },
+    src: arvindKumarImg,
+  },
+  {
+    name: "Dr. Vaishali",
+    specialization: "Pharmaceutical Chemistry",
+    designation: "Professor",
+    details: {
+      areaOfInterest: "Pharmacognosy, Phytochemistry",
+      experience: "15 Years Teaching",
+      papers: "National: 10, International: 3",
+      conferences: "Attended: 8, Organized: 2",
+      courses: "Pharmacology, Microbiology",
+    },
+    src: vaishaliImg,
+  },
+];
 ---
 
 <Layout>
-    <h1>Faculty Page</h1>
-    <p>Welcome to the faculty page.</p>
+  <Section background="white">
+    <table class="table-auto w-full border-collapse border max-w-4xl mx-auto">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border border-gray-300 px-4 py-2">S. No.</th>
+          <th class="border border-gray-300 px-4 py-2">Name</th>
+          <th class="border border-gray-300 px-4 py-2">Specialization</th>
+          <th class="border border-gray-300 px-4 py-2">Designation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          facultyData.map((faculty, index) => (
+            <>
+              {/* Main Row */}
+              <tr class="hover:bg-gray-100 cursor-pointer" data-index={index}>
+                <td class="border border-gray-300 px-4 py-2 text-center">
+                  {index + 1}
+                </td>
+                <td class="border border-gray-300 px-4 py-2 text-center">
+                  {faculty.name}
+                </td>
+                <td class="border border-gray-300 px-4 py-2 text-center">
+                  {faculty.specialization}
+                </td>
+                <td class="border border-gray-300 px-4 py-2 text-center">
+                  {faculty.designation}
+                </td>
+              </tr>
+
+              {/* Expandable Details Row */}
+              <tr id={`details-${index}`} class="hidden">
+                <td
+                  colspan="4"
+                  class="border border-gray-300 px-4 py-2 bg-gray-50"
+                >
+                  <div class="flex items-start gap-4">
+                    <Image
+                      src={faculty.src}
+                      alt={`Photo of ${faculty.name}`}
+                      class="w-32 h-32 rounded-lg"
+                    />
+                    <Section
+                      background="green"
+                      classes="py-4 rounded-lg"
+                      space={false}
+                    >
+                      <table class="table-auto w-full rounded-lg border-collapse border border-gray-300">
+                        <tbody>
+                          <tr>
+                            <th class="border px-4 py-2 text-left text-white font-nunito">
+                              NAME
+                            </th>
+                            <td class="border px-4 py-2 text-white font-nunito">
+                              {faculty.name}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="border px-4 py-2 text-left text-white font-nunito">
+                              Designation
+                            </th>
+                            <td class="border px-4 py-2 text-white font-nunito">
+                              {faculty.designation}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="border px-4 py-2 text-left text-white font-nunito">
+                              Specialization
+                            </th>
+                            <td class="border px-4 py-2 text-white font-nunito">
+                              {faculty.specialization}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="border px-4 py-2 text-left text-white font-nunito">
+                              Area of Interest
+                            </th>
+                            <td class="border px-4 py-2 text-white font-nunito">
+                              {faculty.details.areaOfInterest}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="border px-4 py-2 text-left text-white font-nunito">
+                              Teaching/Industry Experience
+                            </th>
+                            <td class="border px-4 py-2 text-white font-nunito">
+                              {faculty.details.experience}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="border px-4 py-2 text-left text-white font-nunito">
+                              Published Papers
+                            </th>
+                            <td class="border px-4 py-2 text-white font-nunito">
+                              {faculty.details.papers}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="border px-4 py-2 text-left text-white font-nunito">
+                              Conferences Attended/Organized
+                            </th>
+                            <td class="border px-4 py-2 text-white font-nunito">
+                              {faculty.details.conferences}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="border px-4 py-2 text-left text-white font-nunito">
+                              Courses Taught
+                            </th>
+                            <td class="border px-4 py-2 text-white font-nunito">
+                              {faculty.details.courses}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </Section>
+                  </div>
+                </td>
+              </tr>
+            </>
+          ))
+        }
+      </tbody>
+    </table>
+  </Section>
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const rows = document.querySelectorAll("tbody > tr[data-index]");
+
+    rows.forEach((row) => {
+      row.addEventListener("click", () => {
+        const index = row.getAttribute("data-index");
+        const detailsRow = document.getElementById(`details-${index}`);
+
+        if (detailsRow.classList.contains("hidden")) {
+          detailsRow.classList.remove("hidden");
+        } else {
+          detailsRow.classList.add("hidden");
+        }
+      });
+    });
+  });
+</script>

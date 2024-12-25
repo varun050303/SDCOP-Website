@@ -1,8 +1,171 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+
+const peos = [
+  {
+    number: "1",
+    title: "Knowledge",
+    content:
+      "Program graduates will possess a solid theoretical foundation as well as the essential skill set in pharmaceutical sciences, enabling them to employ these tools in the pharmaceutical business, medical facilities, and other settings.",
+  },
+  {
+    number: "2",
+    title: "Core Competence",
+    content:
+      "To give students a strong foundation in the principles of pharmaceutics, pharmaceutical chemistry, pharmacology, and Pharmacognosy in accordance with the demands of community, hospital, and pharmaceutical industries. The program's goal is to equip students with future-ready skills.",
+  },
+  {
+    number: "3",
+    title: "Wideness",
+    content:
+      "To impart to students a solid understanding of pharmacodynamics, pharmacokinetics, drug characteristics, synthesis, molecular modelling, formulation and development, and analytical techniques.",
+  },
+  {
+    number: "4",
+    title: "Professionalism",
+    content:
+      "To instill in students a multidisciplinary perspective, good communication techniques, a professional and ethical mindset, and the capacity to connect challenges in the pharmaceutical sciences to a larger societal context.",
+  },
+  {
+    number: "5",
+    title: "Composition",
+    content:
+      "The institute's guiding principle is to use cutting-edge teaching strategies that encourage independent study in order to prepare students for success in postgraduate programs as well as in the pharmaceutical business or in whatever career they choose.",
+  },
+];
 ---
 
 <Layout>
-    <h1>About Page</h1>
-    <p>Welcome to the about page.</p>
+  <div class="max-w-4xl mx-auto py-12 px-4 font-nunito text">
+    <h2 class="font-bold text-emerald-800 mb-6 heading">
+      S.D. College of Pharmacy & Vocational Studies
+    </h2>
+
+    <div class="prose prose-lg max-w-none">
+      <p class="text-gray-700 mb-8 text-justify">
+        S.D. College of Pharmacy & Vocational Studies in Muzaffarnagar, Uttar
+        Pradesh, India, is a prestigious institution known for its commitment to
+        excellence in pharmaceutical education and professional development.
+        Established in 2001 under the auspices of The S.D. College Association,
+        the college has become a beacon for aspiring pharmacists, nurturing
+        talent in a peaceful and eco-friendly environment.
+      </p>
+
+      <section class="mb-8">
+        <h2 class="font-semibold text-emerald-700 mb-4 heading">
+          Campus and Infrastructure
+        </h2>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <ul class="space-y-3">
+            <li>
+              <span class="font-semibold"
+                >Administrative Block and Digital Lecture Halls:</span
+              > Modern facilities equipped with smart technology for effective learning.
+            </li>
+            <li>
+              <span class="font-semibold">Advanced Laboratories:</span> Well-equipped
+              labs for pharmaceutical research and development, housing instruments
+              like FT-IR, HPLC, UV-Spectrophotometer, Flame Photometer, and more.
+            </li>
+            <li>
+              <span class="font-semibold">Digital Library:</span> A comprehensive
+              resource center with an extensive collection of books and journals
+              of international acclaim.
+            </li>
+            <li>
+              <span class="font-semibold">Medicinal Garden:</span> A rich repository
+              of essential herbs, enhancing practical knowledge in pharmacognosy.
+            </li>
+            <li>
+              <span class="font-semibold">CCSEA-Approved Animal House:</span> A facility
+              supporting advanced pharmaceutical research and studies.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="font-semibold text-emerald-700 mb-4 heading">
+          Academic Programs
+        </h2>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <ul class="space-y-3">
+            <li>
+              <span class="font-semibold">M.Pharm:</span> Specializations in Pharmaceutical
+              Chemistry and Pharmacognosy.
+            </li>
+            <li>
+              <span class="font-semibold">B.Pharm and D.Pharm:</span> Foundational
+              and advanced courses in pharmacy.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-emerald-700 mb-4 heading">
+          Research and Innovation
+        </h2>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <p>
+            The institution emphasizes innovation and hands-on learning, with
+            its well-furnished research laboratories fostering groundbreaking
+            studies and practical expertise.
+          </p>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-emerald-700 mb-4 heading">
+          Community Outreach
+        </h2>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <p>
+            S.D. College of Pharmacy also plays a vital role in community
+            engagement. It operates <span class="font-semibold"
+              >Radio SD 90.8 FM</span
+            >, the first community radio station in Muzaffarnagar, which serves
+            as a platform for local voices and initiatives.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <div class="max-w-4xl mx-auto py-12 px-4">
+      <h2 class="heading text-3xl font-bold text-emerald-800 text-center mb-8">
+        Program Educational Objectives [PEOs]
+      </h2>
+
+      <div class="grid gap-6">
+        {
+          peos.map((peo) => (
+            <div class="group transition-all duration-300 hover:-translate-y-1">
+              <div class="bg-white rounded-lg shadow-md hover:shadow-xl p-6 border-l-4 border-emerald-600 hover:bg-emerald-50 transition-all duration-300">
+                <div class="flex items-start gap-4">
+                  <div class="bg-emerald-100 text-emerald-800 font-bold rounded-full w-12 h-12 px-5 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                    {peo.number}
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-emerald-800 mb-2">
+                      {peo.title}
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">{peo.content}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .heading {
+    @apply font-oswald text-[40px] font-[500] tracking-wide;
+  }
+  .text {
+    @apply text-2xl font-nunito leading-9;
+  }
+</style>

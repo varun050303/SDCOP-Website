@@ -1,8 +1,9 @@
 ---
-import collegeLogo from '../assets/collegeLogo.png';
+import collegeLogo from "../assets/collegeLogo.png";
 const title = "S.D. College of Pharmacy & Vocational Studies";
 const subTitle = "Bhopa Road, Muzaffarnagar, Uttar Pradesh 251001";
-const affiliation = "Affiliated to Dr. A.P.J. Abdul Kalam Technical University, Lucknow";
+const affiliation =
+  "Affiliated to Dr. A.P.J. Abdul Kalam Technical University, Lucknow";
 
 const loginText = "AKTU Login";
 const navLinks = [
@@ -14,46 +15,192 @@ const navLinks = [
   { name: "Academic", href: "/academic" },
 ];
 
-
 const pathName = new URL(Astro.request.url).pathname;
-const currentPath = pathName.slice(1)
-
+const currentPath = pathName.slice(1);
 ---
 
-<header class=" bg-navy-blue">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between w-full p-4 md:p-8">
-        <div class="flex gap-4 items-center mb-4 md:mb-0">
-            <img class="w-16 h-16 md:w-20 md:h-20 rounded flex-none" src={collegeLogo.src} alt="college logo" fetchpriority="high"/>
-            <div class="flex flex-col space-y-2 text-center md:text-left">
-                <h1 class="font-oswald text-2xl md:text-3xl text-white">{title}</h1>
-                <h2 class="subHeading text-sm md:text-md">{subTitle}</h2>
-                <h3 class="subHeading text-xs md:text-sm">{affiliation}</h3>
-            </div>
-        </div>
-        <nav class="hidden lg:flex space-y-2 md:space-y-0 md:space-x-10 font-oswald text-lg">
-            {navLinks.map((link) => 
-                {
-                    const isActive = currentPath === link.href.slice(1);
-                    return <a href={link.href} class={isActive ? "active tracking-wide":"text-white tracking-wide hoverEffect" }>{link.name}</a>
-                }
-            )}
-        </nav>
-        <div class="mt-4 md:mt-0">
-            <a href="#" class="subHeading text-lg hoverEffect">{loginText}</a>
-        </div>
+<header class="bg-navy-blue">
+  <div
+    class="container mx-auto flex flex-col md:flex-row items-center justify-between w-full p-4 md:p-8"
+  >
+    <!-- Logo and College Info -->
+    <div class="flex gap-4 items-center mb-4 md:mb-0">
+      <img
+        class="w-16 h-16 md:w-20 md:h-20 rounded flex-none"
+        src={collegeLogo.src}
+        alt="college logo"
+        fetchpriority="high"
+      />
+      <div class="flex flex-col space-y-2 text-center md:text-left">
+        <h1 class="font-oswald text-2xl md:text-3xl text-white">{title}</h1>
+        <h2 class="subHeading text-sm md:text-md">{subTitle}</h2>
+        <h3 class="subHeading text-xs md:text-sm">{affiliation}</h3>
+      </div>
     </div>
+
+    <!-- Desktop Navigation -->
+    <nav
+      class="hidden lg:flex space-y-2 md:space-y-0 md:space-x-10 font-oswald text-lg"
+    >
+      {
+        navLinks.map((link) => {
+          const isActive = currentPath === link.href.slice(1);
+          return (
+            <a
+              href={link.href}
+              class={
+                isActive
+                  ? "active tracking-wide"
+                  : "text-white tracking-wide hoverEffect"
+              }
+            >
+              {link.name}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Login Link -->
+    <div class="hidden lg:block mt-4 md:mt-0">
+      <a href="#" class="subHeading text-lg hoverEffect">{loginText}</a>
+    </div>
+
+    <!-- Burger Menu for Mobile -->
+    <div class="lg:hidden">
+      <div class="burger-menu">
+        <div class="burger-icon" id="burger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Backdrop -->
+        <div class="backdrop" id="backdrop"></div>
+
+        <!-- Side Drawer -->
+        <div class="side-drawer" id="side-drawer">
+          {navLinks.map((link) => <a href={link.href}>{link.name}</a>)}
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
 <style>
-    .subHeading{
-        @apply font-oswald text-white tracking-wide;
-    }
+  /* Header styles */
+  .subHeading {
+    @apply font-oswald text-white tracking-wide;
+  }
 
-    .hoverEffect{
-        @apply hover:text-yellow-400 transition delay-100 ease-in;
-    }
+  .hoverEffect {
+    @apply hover:text-yellow-400 transition delay-100 ease-in;
+  }
 
-    .active{
-        @apply text-yellow-400;
-    }
+  .active {
+    @apply text-yellow-400;
+  }
+
+  /* Burger menu */
+  .burger-icon {
+    cursor: pointer;
+    width: 35px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .burger-icon span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .burger-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .burger-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .side-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 60%;
+    background: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    z-index: 15;
+    opacity: 0.8;
+    padding: 8rem;
+  }
+
+  .side-drawer.open {
+    transform: translateX(0);
+  }
+
+  .side-drawer a {
+    text-decoration: none;
+    color: #333;
+    margin: 1rem 0;
+    font-size: 32px;
+    transition: color 0.2s;
+    font-weight: 600;
+    color: rgb(12 38 69);
+  }
+
+  .side-drawer a:hover {
+    color: #0077ff;
+  }
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+  }
+
+  .backdrop.open {
+    opacity: 1;
+    visibility: visible;
+  }
 </style>
+
+<script>
+  const burgerIcon = document.getElementById("burger-icon");
+  const sideDrawer = document.getElementById("side-drawer");
+  const backdrop = document.getElementById("backdrop");
+
+  burgerIcon.addEventListener("click", () => {
+    const isOpen = burgerIcon.classList.toggle("open");
+    sideDrawer.classList.toggle("open", isOpen);
+    backdrop.classList.toggle("open", isOpen);
+  });
+
+  backdrop.addEventListener("click", () => {
+    burgerIcon.classList.remove("open");
+    sideDrawer.classList.remove("open");
+    backdrop.classList.remove("open");
+  });
+</script>

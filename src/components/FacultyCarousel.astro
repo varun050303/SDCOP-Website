@@ -9,71 +9,60 @@ interface FacultyMember {
 }
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/faculties/*.jpeg"
+  "../assets/faculties/*.png"
 );
 
 const faculties: FacultyMember[] = [
   {
-    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
-    name: "Bhuwnendra",
+    src: (await images["../assets/faculties/arvind-kumar.png"]()).default,
+    name: "Dr. Bhuwnendra",
     position: "Associate Professor",
   },
   {
-    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
-    name: "Shafqat Zaidi",
+    src: (await images["../assets/faculties/vaishali.png"]()).default,
+    name: "Dr. Vaishali",
+    position: "Professor",
+  },
+  {
+    src: (await images["../assets/faculties/arvind-kumar.png"]()).default,
+    name: "Dr. Bhuwnendra",
     position: "Associate Professor",
   },
   {
-    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
-    name: "Bhuwnendra",
+    src: (await images["../assets/faculties/vaishali.png"]()).default,
+    name: "Dr. Vaishali",
+    position: "Professor",
+  },
+  {
+    src: (await images["../assets/faculties/arvind-kumar.png"]()).default,
+    name: "Dr. Bhuwnendra",
     position: "Associate Professor",
   },
   {
-    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
-    name: "Shafqat Zaidi",
+    src: (await images["../assets/faculties/vaishali.png"]()).default,
+    name: "Dr. Vaishali",
+    position: "Professor",
+  },
+  {
+    src: (await images["../assets/faculties/arvind-kumar.png"]()).default,
+    name: "Dr. Bhuwnendra",
     position: "Associate Professor",
   },
   {
-    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
-    name: "Bhuwnendra",
+    src: (await images["../assets/faculties/vaishali.png"]()).default,
+    name: "Dr. Vaishali",
+    position: "Professor",
+  },
+  {
+    src: (await images["../assets/faculties/arvind-kumar.png"]()).default,
+    name: "Dr. Bhuwnendra",
     position: "Associate Professor",
   },
   {
-    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
-    name: "Shafqat Zaidi",
-    position: "Associate Professor",
+    src: (await images["../assets/faculties/vaishali.png"]()).default,
+    name: "Dr. Vaishali",
+    position: "Professor",
   },
-  {
-    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
-    name: "Bhuwnendra",
-    position: "Associate Professor",
-  },
-  {
-    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
-    name: "Shafqat Zaidi",
-    position: "Associate Professor",
-  },
-  {
-    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
-    name: "Bhuwnendra",
-    position: "Associate Professor",
-  },
-  {
-    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
-    name: "Shafqat Zaidi",
-    position: "Associate Professor",
-  },
-  {
-    src: (await images["../assets/faculties/bhuvnendra.jpeg"]()).default,
-    name: "Bhuwnendra",
-    position: "Associate Professor",
-  },
-  {
-    src: (await images["../assets/faculties/shafqat.jpeg"]()).default,
-    name: "Shafqat Zaidi",
-    position: "Associate Professor",
-  },
-  // ... more faculty members
 ];
 ---
 
@@ -192,7 +181,7 @@ const faculties: FacultyMember[] = [
     // Autoplay functionality
     let carouselInterval: number;
     function startAutoplay() {
-      carouselInterval = setInterval(nextSlide, 5000); // Autoplay interval
+      carouselInterval = setInterval(nextSlide, 2000); // Autoplay interval
     }
 
     function stopAutoplay() {
