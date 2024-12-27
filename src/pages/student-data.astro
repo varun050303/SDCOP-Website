@@ -1,7 +1,84 @@
 ---
+import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
+
+const data = {
+  "2023-24": [
+    { course: "B.Pharm (UG)", boys: 328, girls: 68, total: 396 },
+    { course: "M.Pharm (PG)", boys: 19, girls: 16, total: 35 },
+    { course: "D.Pharm (Diploma)", boys: 82, girls: 14, total: 96 }
+  ],
+  "2022-23": [
+    { course: "B.Pharm (UG)", boys: 317, girls: 61, total: 378 },
+    { course: "M.Pharm (PG)", boys: 23, girls: 9, total: 32 },
+    { course: "D.Pharm (Diploma)", boys: 113, girls: 14, total: 127 }
+  ],
+  "2021-22": [
+    { course: "B.Pharm (UG)", boys: 299, girls: 60, total: 359 },
+    { course: "M.Pharm (PG)", boys: 23, girls: 11, total: 34 },
+    { course: "D.Pharm (Diploma)", boys: 123, girls: 9, total: 132 }
+  ]
+};
 ---
 
 <Layout>
-  <p>Hie From Student Data</p>
+  <Section background="white">
+  <div class="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-md my-12">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold">Pharmacy Course Enrollment</h2>
+      <select id="yearSelect" class="border rounded-md p-2">
+        {Object.keys(data).map(year => (
+          <option value={year}>Session: {year}</option>
+        ))}
+      </select>
+    </div>
+
+    <div class="overflow-x-auto">
+      {Object.entries(data).map(([year, yearData]) => (
+        <table class="w-full table-auto hidden" id={`table-${year}`}>
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="p-3 text-left">Course</th>
+              <th class="p-3 text-center">Boys</th>
+              <th class="p-3 text-center">Girls</th>
+              <th class="p-3 text-center">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {yearData.map((row, index) => (
+              <tr class={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                <td class="p-3 border-t">{row.course}</td>
+                <td class="p-3 border-t text-center">{row.boys}</td>
+                <td class="p-3 border-t text-center">{row.girls}</td>
+                <td class="p-3 border-t text-center font-medium">{row.total}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ))}
+    </div>
+  </div>
+</Section>
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const yearSelect = document.getElementById('yearSelect');
+    const tables = document.querySelectorAll('table');
+    
+    // Show first table initially
+    tables[0].classList.remove('hidden');
+
+    yearSelect?.addEventListener('change', (e) => {
+      const selectedYear = e.target?.value;
+      
+      tables.forEach(table => {
+        if (table.id === `table-${selectedYear}`) {
+          table.classList.remove('hidden');
+        } else {
+          table.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

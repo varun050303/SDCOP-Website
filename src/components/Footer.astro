@@ -24,6 +24,9 @@ const quickLinks = {
       url: "https://sdcopmzn.com/NIRF2024.pdf",
       external: true,
     },
+    {
+      name:"Commitee", url:"commitee", external:true
+    }
   ],
 };
 
@@ -69,7 +72,7 @@ const socialLinks = [
           {
             quickLinks.importantLinks.map((link) => (
               <li>
-                <a href={link.url} class="hoverEffect">
+                <a href={link.url} class="hoverEffect curso-pointer">
                   {link.name}
                 </a>
               </li>
