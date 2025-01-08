@@ -44,7 +44,7 @@ const { title = "SD College Of Pharmacy", description } =
 <script>
   (function () {
     emailjs.init({
-      publicKey: import.meta.env.PUBLIC_EMAILJS_KEY,
+      publicKey: import.meta.env.USER_EMAILJS_TOKEN,
     });
   })();
 </script>
@@ -57,8 +57,8 @@ const { title = "SD College Of Pharmacy", description } =
         // these IDs from the previous steps
         emailjs
           .sendForm(
-            import.meta.env.EMAIL_SERVICE_KEY,
-            import.meta.env.TEMPLATE_EMAILJS_KEY,
+            import.meta.env.EMAIL_SERVICE_TOKEN,
+            import.meta.env.TEMPLATE_EMAILJS_TOKEN,
             this
           )
           .then(
