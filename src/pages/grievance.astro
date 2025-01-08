@@ -5,88 +5,117 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
   <Section background="white">
-    <h1 class="text-2xl font-bold text-center mb-6">Grievance Form</h1>
-    <p class="text-sm text-gray-500 mb-4">
-      Please fill out the form below to submit your grievance. Fields marked
-      with <span class="text-red-500">*</span> are required.
-    </p>
-    <div class="">
-      <form id="grievance-form" class="space-y-4">
-        <!-- Name Field -->
+    <h1 class="heading mb-6">Grievance Form</h1>
+    <Section background="green" classes="">
+      <div class="text">
+        <p class="mb-4">
+          Please fill out the form below to submit your grievance. Fields marked
+          with <span class="text-red-500">*</span> are required.
+        </p>
         <div>
-          <label for="user_name" class="block text-sm font-medium text-gray-700"
-            >Your Name <span class="text-red-500">*</span></label
-          >
-          <input
-            type="text"
-            id="user_name"
-            name="user_name"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-            placeholder="Enter your name"
-            required
-          />
-        </div>
+          <form id="grievance-form" class="space-y-4">
+            <div class="mb-4">
+              <label for="role"> Select Your Role </label>
+              <select
+                id="role"
+                name="role"
+                class="text-gray-700 block w-full p-2.5 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                required
+              >
+                <option value="" disabled selected> Choose your role </option>
+                <option value="student" selected>Student</option>
+                <option value="teacher">Faculty</option>
+                <option value="staff">Staff</option>
+                <option value="stakeholder">Stakeholder</option>
+              </select>
+            </div>
+            <!-- Name Field -->
+            <div>
+              <label for="user_name"
+                >Your Name <span class="text-red-500">*</span></label
+              >
+              <input
+                type="text"
+                id="user_name"
+                name="user_name"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
 
-        <!-- Email Field -->
-        <div>
-          <label
-            for="user_email"
-            class="block text-sm font-medium text-gray-700"
-            >Your Email <span class="text-red-500">*</span></label
-          >
-          <input
-            type="email"
-            id="user_email"
-            name="user_email"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
+            <!-- Email Field -->
+            <div>
+              <label for="user_email" class=""
+                >Your Email <span class="text-red-500">*</span></label
+              >
+              <input
+                type="email"
+                id="user_email"
+                name="user_email"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
 
-        <!-- Subject Field -->
-        <div>
-          <label
-            for="grievance_subject"
-            class="block text-sm font-medium text-gray-700"
-            >Subject <span class="text-red-500">*</span></label
-          >
-          <input
-            type="text"
-            id="grievance_subject"
-            name="grievance_subject"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-            placeholder="Enter the subject of your grievance"
-            required
-          />
-        </div>
+            <!-- Subject Field -->
+            <div>
+              <label for="grievance_subject" class=""
+                >Subject <span class="text-red-500">*</span></label
+              >
+              <input
+                type="text"
+                id="grievance_subject"
+                name="grievance_subject"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Enter the subject of your grievance"
+                required
+              />
+            </div>
 
-        <!-- Message Field -->
-        <div>
-          <label
-            for="grievance_message"
-            class="block text-sm font-medium text-gray-700"
-            >Details <span class="text-red-500">*</span></label
-          >
-          <textarea
-            id="grievance_message"
-            name="grievance_message"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-            rows="4"
-            placeholder="Provide details of your grievance"
-            required></textarea>
-        </div>
+            <!-- Message Field -->
+            <div>
+              <label for="grievance_message" class=""
+                >Details <span class="text-red-500">*</span></label
+              >
+              <textarea
+                id="grievance_message"
+                name="grievance_message"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                rows="4"
+                placeholder="Provide details of your grievance"
+                required></textarea>
+            </div>
 
-        <!-- Submit Button -->
-        <div>
-          <button
-            type="submit"
-            class="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Submit Grievance
-          </button>
+            <!-- Submit Button -->
+            <div>
+              <button
+                type="submit"
+                class="w-full bg-navy-blue text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Submit Grievance
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      </div>
+    </Section>
   </Section>
 </Layout>
+
+<style>
+  .heading {
+    @apply font-oswald text-[40px] text-dark-blue font-medium;
+  }
+  .text {
+    @apply text-white font-nunito text-xl;
+  }
+  input {
+    @apply block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:px-3 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6;
+  }
+
+  textarea {
+    @apply block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:px-3 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6;
+  }
+</style>

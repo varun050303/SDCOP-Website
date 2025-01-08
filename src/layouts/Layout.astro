@@ -44,7 +44,7 @@ const { title = "SD College Of Pharmacy", description } =
 <script>
   (function () {
     emailjs.init({
-      publicKey: import.meta.env.PUBLIC_USER_EMAILJS_TOKEN,
+      publicKey: "71EOTgjpG9HjVUj0n",
     });
   })();
 </script>
@@ -55,20 +55,14 @@ const { title = "SD College Of Pharmacy", description } =
       ?.addEventListener("submit", function (event) {
         event.preventDefault();
         // these IDs from the previous steps
-        emailjs
-          .sendForm(
-            import.meta.env.PUBLIC_EMAIL_SERVICE_TOKEN,
-            import.meta.env.PUBLIC_TEMPLATE_EMAILJS_TOKEN,
-            this
-          )
-          .then(
-            () => {
-              console.log("SUCCESS!");
-            },
-            (error: Error) => {
-              console.log("FAILED...", error);
-            }
-          );
+        emailjs.sendForm("service_016o468", "template_ct1bhrb", this).then(
+          () => {
+            console.log("SUCCESS!");
+          },
+          (error: Error) => {
+            console.log("FAILED...", error);
+          }
+        );
       });
   };
 </script>
