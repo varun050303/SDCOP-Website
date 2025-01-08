@@ -11,7 +11,7 @@ const { background, classes, space = true } = Astro.props;
 ---
 
 <section
-  class=`w-full bg-cover bg-no-repeat ${classes} ${space ? "pt-14 pb-16" : ""}`
+  class=`w-full bg-contain ${classes} ${space ? "pt-14 pb-16" : ""}`
   style={{
     backgroundImage: `url('${background === "green" ? greenBg.src : whiteBg.src}')`,
   }}

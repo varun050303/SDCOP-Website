@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import data from "../../data.json";
+import Section from "../components/Section.astro";
+import Timeline from "../components/Timeline.astro";
+
+type EventsDataType = {
+  [key: string]: string[];
+};
+
+const eventsData: EventsDataType = data.college.events;
+const years = Object.keys(eventsData).sort((a, b) => b.localeCompare(a));
+
+// Function to get full image URL
+function getImageUrl(filename: string) {
+  const year = Object.keys(eventsData).find((year) =>
+    eventsData[year].includes(filename)
+  );
+  return `https://sdcopmzn.com/events-${year}/${filename}`;
+}
+
+// Create Image objects for Astro's Image component
+function createImageObj(url: string) {
+  return {
+    src: url,
+    width: 800,
+    height: 600,
+    format: "webp" as const,
+  };
+}
+---
+
+<Layout>
+  <Section background="white">
+    <h1 class="heading text-dark-blue mb-14">College Events</h1>
+    <Timeline />
+    <div class="h-10"></div>
+    <div class="space-y-8">
+      {
+        years.map((year) => (
+          <div class="border-b pb-6">
+            <h2 class="sub-heading">{year}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {eventsData[year].map((imagePath) => {
+                const imageUrl = getImageUrl(imagePath);
+                return (
+                  <div class="relative overflow-hidden rounded-lg group">
+                    <Image
+                      src={createImageObj(imageUrl)}
+                      alt={`Event from ${year}`}
+                      class="w-full h-60 object-cover transition-transform duration-300 transform group-hover:scale-105"
+                    />
+                    {/* Optional Overlay */}
+                    <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-0 transition-all duration-300" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .heading {
+    @apply font-oswald text-[40px] font-[500] tracking-wide;
+  }
+  .sub-heading {
+    @apply font-oswald text-[30px] font-[500] tracking-wide text-dark-blue mb-5;
+  }
+</style>

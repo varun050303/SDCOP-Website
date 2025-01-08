@@ -1,0 +1,36 @@
+---
+const timelineData = [
+  { year: "Ongoing", top: true },
+  { year: 2023, top: false },
+  { year: 2022, top: true },
+  { year: 2021, top: false },
+  { year: 2020, top: true },
+];
+---
+
+<div class="my-20">
+  <div
+    class="timeline relative w-full rounded border-2 border-gray-400 border-dashed"
+  >
+    <div class="year absolute flex justify-between w-full -top-3 px-0">
+      {
+        timelineData.map((item, index) => (
+          <div class="relative group cursor-pointer">
+            <div class="w-5 h-5 bg-white rounded-full z-10 outline outline-8 outline-green-700 group-hover:scale-110 transition duration-300" />
+            <p
+              class={`w-fit absolute left-0 right-0 text-green-800 group-hover:scale-100  ${item.top ? "-bottom-11 -ml-2" : "-top-11 -ml-2"}`}
+            >
+              {item.year}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .year {
+    @apply font-medium font-oswald text-navy-blue text-2xl;
+  }
+</style>

@@ -12,7 +12,12 @@ const navLinks = [
   { name: "Admission", href: "/admission" },
   { name: "Contact Us", href: "/contact" },
   { name: "Faculty", href: "/faculty" },
-  { name: "Academic", href: "/academic" },
+];
+const otherLinks = [
+  { name: "Grievance", href: "/grievance" },
+  { name: "IQAC", href: "/" },
+  { name: "Events", href: "/events" },
+  { name: "Alumni", href: "/" },
 ];
 
 const pathName = new URL(Astro.request.url).pathname;
@@ -59,6 +64,23 @@ const currentPath = pathName.slice(1);
           );
         })
       }
+      <div class="relative group">
+        <a href="#" class="text-white tracking-wide hoverEffect">Other</a>
+        <div
+          class="absolute hidden before:absolute before:rotate-180 before:-top-4 before:left-6 before:-ml-2 before:border-t-white before:border-x-transparent before:border-b-transparent before:content-[''] before:border-8 group-hover:block hover:block left-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-20"
+        >
+          {
+            otherLinks.map((link) => (
+              <a
+                href={link.href}
+                class="block px-4 py-2 text-navy-blue hover:bg-gray-100 transition"
+              >
+                {link.name}
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </nav>
 
     <!-- Login Link -->
@@ -192,15 +214,15 @@ const currentPath = pathName.slice(1);
   const sideDrawer = document.getElementById("side-drawer");
   const backdrop = document.getElementById("backdrop");
 
-  burgerIcon.addEventListener("click", () => {
+  burgerIcon?.addEventListener("click", () => {
     const isOpen = burgerIcon.classList.toggle("open");
-    sideDrawer.classList.toggle("open", isOpen);
-    backdrop.classList.toggle("open", isOpen);
+    sideDrawer?.classList.toggle("open", isOpen);
+    backdrop?.classList.toggle("open", isOpen);
   });
 
-  backdrop.addEventListener("click", () => {
-    burgerIcon.classList.remove("open");
-    sideDrawer.classList.remove("open");
+  backdrop?.addEventListener("click", () => {
+    burgerIcon?.classList.remove("open");
+    sideDrawer?.classList.remove("open");
     backdrop.classList.remove("open");
   });
 </script>

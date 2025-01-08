@@ -36,3 +36,39 @@ const { title = "SD College Of Pharmacy", description } =
     @apply font-oswald text-[40px] font-[500] tracking-wide;
   }
 </style>
+
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+></script>
+<script>
+  (function () {
+    emailjs.init({
+      publicKey: import.meta.env.PUBLIC_EMAILJS_KEY,
+    });
+  })();
+</script>
+<script>
+  window.onload = function () {
+    document
+      ?.getElementById("grievance-form")
+      ?.addEventListener("submit", function (event) {
+        event.preventDefault();
+        // these IDs from the previous steps
+        emailjs
+          .sendForm(
+            import.meta.env.EMAIL_SERVICE_KEY,
+            import.meta.env.TEMPLATE_EMAILJS_KEY,
+            this
+          )
+          .then(
+            () => {
+              console.log("SUCCESS!");
+            },
+            (error: Error) => {
+              console.log("FAILED...", error);
+            }
+          );
+      });
+  };
+</script>
