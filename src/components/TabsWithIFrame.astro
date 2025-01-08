@@ -1,0 +1,76 @@
+---
+interface Tab {
+  year: string; // Year or identifier for the tab
+  url: string; // PDF URL
+}
+
+const { tabs } = Astro.props as { tabs: Tab[] };
+---
+
+<div class="tabs-container">
+  <!-- Tab Buttons -->
+  <div class="flex space-x-4 mb-4">
+    {
+      tabs.map((tab, index) => (
+        <button
+          type="button"
+          class={`tab-button px-4 py-2 border rounded ${
+            index === 0 ? "bg-blue-500 text-white active" : ""
+          }`}
+          data-year={tab.year}
+        >
+          {tab.year}
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Tab Contents -->
+  <div class="tab-content">
+    {
+      tabs.map((tab, index) => (
+        <div
+          id={tab.year}
+          class={`faculty-iframe ${index === 0 ? "" : "hidden"}`}
+        >
+          <iframe src={`${tab.url}`} class="w-full h-[70vh] border" />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".tab-button");
+    const tabs = document.querySelectorAll(".tab-content > div");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons
+        buttons.forEach((btn) =>
+          btn.classList.remove("bg-blue-500", "text-white", "active")
+        );
+        button.classList.add("bg-blue-500", "text-white", "active");
+
+        // Hide all tab contents
+        tabs.forEach((tab) => tab.classList.add("hidden"));
+
+        // Show the selected tab
+        const selectedYear = button.getAttribute("data-year")!;
+        document?.getElementById(selectedYear)?.classList.remove("hidden");
+      });
+    });
+  });
+</script>
+
+<style>
+  .tab-button.active {
+    font-weight: bold;
+    background-color: green;
+  }
+  .faculty-iframe iframe {
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+</style>

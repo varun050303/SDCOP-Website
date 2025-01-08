@@ -1,7 +1,29 @@
 ---
+import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
+import TabsWithIFrame from "../components/TabsWithIFrame.astro";
+const auditReports = [
+  {
+    year: "2020-21",
+    url: "https://docs.google.com/gview?url=https://sdcopmzn.com/2020-21-Audit-Report.pdf&embedded=true",
+  },
+  {
+    year: "2021-22",
+    url: "https://docs.google.com/gview?url=https://sdcopmzn.com/2021-22-Audit-Report.pdf&embedded=true",
+  },
+  {
+    year: "2022-23",
+    url: "https://docs.google.com/gview?url=https://sdcopmzn.com/2022-23-Audit-Report.pdf&embedded=true",
+  },
+  {
+    year: "2023-24",
+    url: "https://docs.google.com/gview?url=https://sdcopmzn.com/2023-24-Audit-Report.pdf&embedded=true",
+  },
+];
 ---
 
 <Layout>
-  <p>Audit Report</p>
+  <Section background="white">
+    <TabsWithIFrame tabs={auditReports} />
+  </Section>
 </Layout>
