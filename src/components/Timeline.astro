@@ -1,10 +1,10 @@
 ---
 const timelineData = [
-  { year: "Ongoing", top: true },
-  { year: 2023, top: false },
-  { year: 2022, top: true },
-  { year: 2021, top: false },
-  { year: 2020, top: true },
+  { year: "Ongoing", top: true, id: "2023-24" },
+  { year: 2023, top: false, id: "2023-24" },
+  { year: 2022, top: true, id: "2021-22" },
+  { year: 2021, top: false, id: "2021-22" },
+  { year: 2019, top: true, id: "2018-19" },
 ];
 ---
 
@@ -15,7 +15,7 @@ const timelineData = [
     <div class="year absolute flex justify-between w-full -top-3 px-0">
       {
         timelineData.map((item, index) => (
-          <div class="relative group cursor-pointer">
+          <div class="relative group cursor-pointer" data-target={item.id}>
             <div class="w-5 h-5 bg-white rounded-full z-10 outline outline-8 outline-green-700 group-hover:scale-110 transition duration-300" />
             <p
               class={`w-fit absolute left-0 right-0 text-green-800 group-hover:scale-100  ${item.top ? "-bottom-11 -ml-2" : "-top-11 -ml-2"}`}
@@ -34,3 +34,21 @@ const timelineData = [
     @apply font-medium font-oswald text-navy-blue text-2xl;
   }
 </style>
+
+<script>
+  // Add event listeners to each timeline item for scroll functionality
+  document.addEventListener("DOMContentLoaded", () => {
+    const timelineItems = document.querySelectorAll(".timeline .group");
+
+    timelineItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const targetId = item.getAttribute("data-target")!;
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
+  });
+</script>

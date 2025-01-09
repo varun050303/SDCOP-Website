@@ -40,7 +40,9 @@ function createImageObj(url: string) {
       {
         years.map((year) => (
           <div class="border-b pb-6">
-            <h2 class="sub-heading">{year}</h2>
+            <h2 class="sub-heading" id={year}>
+              {year}
+            </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {eventsData[year].map((imagePath) => {
                 const imageUrl = getImageUrl(imagePath);
