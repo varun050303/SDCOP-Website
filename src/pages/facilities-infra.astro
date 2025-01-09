@@ -1,0 +1,39 @@
+---
+import Section from "../components/Section.astro";
+import Layout from "../layouts/Layout.astro";
+
+const facilities = [
+  "DIGITAL CLASSROOM",
+  "LIBRARY",
+  "MEDICINAL GARDEN",
+  "COMPUTER LAB",
+  "ANIMAL HOUSE",
+  "MUSEUM",
+  "SPORTS",
+  "SEMINAR HALL",
+  "TEMPLE",
+];
+---
+
+<Layout>
+  <Section background="white" classes="flex-1">
+    <h1 class="heading text-dark-blue mb-8">Facilities & Infrastructure</h1>
+
+    <div class="facilities space-y-5">
+      {
+        facilities.map((facility) => {
+          return <p class="text">{facility}</p>;
+        })
+      }
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .heading {
+    @apply font-oswald text-[40px] font-[500] tracking-wide;
+  }
+  .text {
+    @apply text-2xl font-nunito leading-9;
+  }
+</style>

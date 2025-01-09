@@ -38,7 +38,7 @@ const images = [
       {
         label: "Apply Now",
         type: "primary",
-        link: "/admission",
+        link: "/courses",
       },
     ],
   },
@@ -156,7 +156,9 @@ images.sort((a, b) => {
         <div class="space-y-12 p-10 order-2 md:order-1">
           <div>
             <h2 class="heading text-white">Institute</h2>
-            <p class="text text-white mt-5 text-justify">{data.college.about}</p>
+            <p class="text text-white mt-5 text-justify">
+              {data.college.about}
+            </p>
           </div>
           <button class="px-8 py-3 button"
             ><a href="/about">Learn More</a></button
@@ -322,17 +324,17 @@ images.sort((a, b) => {
       </div>
     </Section>
   </main>
-
-  <style>
-    .heading {
-      @apply font-oswald text-[40px] font-[500] tracking-wide;
-    }
-    .text {
-      @apply text-2xl font-nunito leading-9;
-    }
-
-    .button {
-      @apply bg-navy-blue rounded-full text-white drop-shadow-xl hover:underline hover:opacity-80 hover:transform hover:translate-y-0.5;
-    }
-  </style>
 </Layout>
+
+<style>
+  .heading {
+    @apply font-oswald text-[40px] font-[500] tracking-wide;
+  }
+  .text {
+    @apply text-2xl font-nunito leading-9;
+  }
+
+  .button {
+    @apply bg-navy-blue rounded-full text-white drop-shadow-xl hover:underline hover:opacity-80 hover:transform hover:translate-y-0.5;
+  }
+</style>
