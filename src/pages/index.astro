@@ -133,10 +133,8 @@ const campusImages = await Promise.all(
     };
 
     return {
-      src: file.default.src, // Access the processed image src
+      src: file?.default.src, // Access the processed image src
       alt: details.title,
-      cardTitle: details.title,
-      cardDescription: details.description,
     };
   })
 );
@@ -270,10 +268,11 @@ images.sort((a, b) => {
                   <span class="text-white">&nbsp;{course.duration}</span>
                   <span class="text-white">[{course.courseType}]</span>
                 </p>
-
-                <button class="px-6 py-3 text-center mt-6 text-sm button">
-                  <a href="/admission">Learn More</a>
-                </button>
+                <a href="/courses">
+                  <button class="px-6 py-3 text-center mt-6 text-sm button">
+                    Learn More
+                  </button>
+                </a>
               </div>
             );
           })

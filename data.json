@@ -166,6 +166,168 @@
                 "World Pharmacist Day 2024/12.jpeg",
                 "World Pharmacist Day 2024/13.jpeg"
             ]
-        }
+        },
+        "facilities": [
+            {
+              "heading": "Library",
+              "description": "The library at SDCOP&VS is a comprehensive resource center for pharmaceutical sciences and related disciplines, housing a vast collection of 13,152 books across 1,174 titles. It provides access to the latest information through subscriptions to 14 national and international journals as well as newspapers such as The Times of India and Hindustan Times, and magazines like India Today (Hindi) and Reader’s Digest. Covering a wide range of subjects, the library's collection supports diverse academic needs, from pharmaceutical chemistry and medicinal chemistry to pharmacognosy, pharmacology, and pharmaceutical microbiology, along with niche areas like advanced instrumental techniques, herbal drug technology, and computer applications in pharmacy. With plans to expand its resources through online journal subscriptions, the library continues to foster a dynamic environment for learning and research, keeping students and faculty abreast of advancements in pharmaceutical sciences.",
+              "infoLinks": [
+                {
+                  "heading":"https://sdcopmzn.com/rc_images/delnet_logo.png",
+                  "href":"https://knowledgegainer.delnet.in/"
+                },
+                {
+                  "heading": "Journals & Book List",
+                  "href": "https://sdcopmzn.com/rc_images/Library.pdf"
+                }
+              ],
+              "images":[
+                "https://sdcopmzn.com/Facilities/Library/Library_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Library/Library_2.jpeg",
+                "https://sdcopmzn.com/Facilities/Library/Library_3.jpeg",
+                "https://sdcopmzn.com/Facilities/Library/Library_4.jpeg"
+              ]
+            },
+            {
+              "heading":"Digital Classrooms",
+              "description":"At SDCOP & VS, we are committed to delivering an exceptional learning experience through state-of-the-art infrastructure. Our classrooms are designed to foster engagement and innovation, featuring advanced digital smart boards, high-definition projectors, and integrated audio systems for seamless knowledge delivery. Fully air-conditioned and equipped with modern amenities, these classrooms provide a comfortable and conducive environment for academic excellence, ensuring that students are empowered to visualize, comprehend, and excel in their educational journey.",
+              "infoLinks":[
+                {
+                  "heading":"",
+                  "href":""
+                }
+              ],
+              "images":[
+                "https://sdcopmzn.com/Facilities/Classroom/Classroom_3.jpeg",
+                "https://sdcopmzn.com/Facilities/Classroom/Classroom_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Classroom/Classroom_2.jpeg"
+              ]
+            },
+            {
+              "heading": "Medicinal Garden",
+              "description": "The Medicinal Garden at SDCOP & VS spans approximately 600 square feet and is home to over 100 medicinal and aromatic plants, including rare species. Located on the western side of the college, this garden serves as a seed repository and supports research and practical learning. Students and faculty adopt plants to promote environmental awareness and sustainability. With the increasing demand for herbal medicines due to their minimal side effects, the garden plays a crucial role in developing herbal drugs and formulations. Integrated into the curriculum, it provides hands-on training and fosters student interest in pharmacognosy and herbal medicine. For this purpose there are facilities in Pharmacy institute for developing various herbal drugs and formulations. The training at garden is an integral part of the curriculum and the various species of the medicinal plants used by the students for their projects and research work generates interest in the subject.",
+              "infoLinks": [
+                {
+                  "heading": "Plants List",
+                  "href": "https://sdcopmzn.com/rc_images/List-of-Plants.pdf"
+                }
+              ],
+              "images":[
+                "https://sdcopmzn.com/Facilities/Medicinal-Garden/medicinal_garden_5.jpeg",
+                "https://sdcopmzn.com/Facilities/Medicinal-Garden/medicinal_garden_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Medicinal-Garden/medicinal_garden_2.jpeg",
+                "https://sdcopmzn.com/Facilities/Medicinal-Garden/medicinal_garden_3.jpeg",
+                "https://sdcopmzn.com/Facilities/Medicinal-Garden/medicinal_garden_4.jpeg"
+              ]
+            },
+            {
+              "heading":"Instrumentation Lab",
+              "description":"At SDCOP & VS, we take pride in our state-of-the-art laboratory infrastructure that supports comprehensive practical learning and research. Our facilities include specialized labs such as the Pharmacognosy Lab, Pharmacology Lab, Pharmaceutical Chemistry Lab, and Pharmaceutics Lab, each equipped with advanced instruments to meet academic and research requirements. Additionally, our Central Instrumentation Facility (CIF) houses sophisticated analytical tools, enabling precise experimentation and fostering innovation. These laboratories provide a hands-on learning environment, empowering students to gain practical insights and develop critical scientific skills.",
+              "infoLinks":[
+                {
+                  "heading":"List of Equipments",
+                  "href":"https://sdcopmzn.com/rc_images/List-of-Equipments.pdf"
+                }
+              ],
+              "images":[
+                "https://sdcopmzn.com/Facilities/Instrument-Lab/instrument-lab_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Instrument-Lab/instrument-lab_2.jpeg",
+                "https://sdcopmzn.com/Facilities/Instrument-Lab/instrument-lab_3.jpeg"  
+              ]
+            },
+            {
+              "heading": "Computer Lab",
+              "description": "SD College of Pharmacy & Vocational Studies has central instructional computing facilities which include computers connected over a network to our labs and offices. Our computer lab contain more than 32 personal computer systems, interconnected via a high-speed, Ethernet network. They offer a wide array of software including the latest packages for word processing, desktop publishing, and other applications. A valid ID and Network logon/password is required to use/access any of the computer labs. This open student lab on the first floor of the pharmacy Building room number F3 is equipped with 32 Acer 15W60PS computers, and one HP P1007 LaserJet printer, all connected to our student network (including file and print server), email, and the Internet.",
+              "infoLinks": [
+                {
+                  "heading": "",
+                  "href": ""
+                }
+              ],
+              "images":[
+                "https://sdcopmzn.com/Facilities/Computer-Lab/computer-lab_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Computer-Lab/computer-lab_2.jpeg"
+              ]
+            },
+            {
+              "heading": "Museum",
+              "description": "The museum aims to provide an educational and cultural resource for students, helping them connect with the roots of the profession while fostering a deeper appreciation for the advancements that shape modern healthcare. It reflects our commitment to meeting academic standards while inspiring future pharmacists to uphold the rich traditions of the field. Located within the campus, the museum is open for all to explore and learn.",
+              "infoLinks": [
+                {
+                  "heading": "Products in museum",
+                  "href": "https://sdcopmzn.com/rc_images/museum_list.pdf"
+                }
+              ],
+              "images":[
+                "https://sdcopmzn.com/Facilities/Museum/museum_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Museum/museum_2.jpeg"
+              ]
+            },
+            {
+              "heading": "Sports",
+              "description": "At SDCOP & VS, we believe in the holistic development of our students, balancing academics with physical and mental well-being. Our campus offers a wide range of sports and recreational activities, including cricket, badminton, chess, carrom, tug of war, volleyball, and indoor games designed to enhance cognitive skills and mental agility. Students can also participate in athletic events such as races and long jump, promoting physical fitness and teamwork. These activities not only foster a spirit of healthy competition but also ensure the overall growth and development of our students.",
+              "infoLinks": [
+                {
+                  "heading": "",
+                  "href": ""
+                }
+              ],
+              "images":[
+
+                "https://sdcopmzn.com/Facilities/Sports/sports_4.jpeg",
+                "https://sdcopmzn.com/Facilities/Sports/sports_3.jpeg",
+                "https://sdcopmzn.com/Facilities/Sports/sports_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Sports/sports_2.jpeg"
+              ]
+            },
+            {
+              "heading": "Animal House",
+              "description": "Availability of laboratory animals is crucial for teaching and research in Pharmaceutical sciences. Our Institute has a separate ANIMAL HOUSE FACILITY spread over 750sq. area and as per the CPCSEA guidelines for Education and Research. The animal facility is intended to assure quality maintenance and welfare of animals used in laboratory studies while conducting biomedical and behavioral research and testing of products. This promotes the human care of animals used in biomedical research. Separate rooms are available for quarantine to separate of newly received animals from those already in the facility until the health or microbial status of the newly received animals is determined. Proper environmental temperature is maintained in the animal rooms by using air-conditioner in hot seasons and hot-blower during the cold seasons. The small animals like Mice and rats are available in the animal house for conducting experimentation. These animals are kept in polypropylene cages and water is provided with polypropylene water bottles. Separate storage areas is designed for feed, bedding, cages and other Incinerator facility is available to dispose the dead animals.",
+              "infoLinks": [
+                {
+                  "heading": "",
+                  "href": ""
+                }
+              ],
+              "images":[
+
+                "https://sdcopmzn.com/Facilities/Animal-House/animal-house_3.jpeg",
+                "https://sdcopmzn.com/Facilities/Animal-House/animal-house_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Animal-House/animal-house_2.jpeg"
+              ]
+            },
+            {
+              "heading": "Seminar Hall",
+              "description": "The academic life in SD College of Pharmacy & Vocational Studies campus goes beyond the curriculum. the seminar hall serves as a hub for academic and professional interactions beyond the classroom. Fully air-conditioned and equipped with advanced audio-visual and presentation tools, it provides a seamless platform for expert talks, interactive sessions, and corporate interfaces. This modern facility enhances the learning experience, fostering engagement and knowledge exchange in a professional environment.",
+              "infoLinks": [
+                {
+                  "heading": "",
+                  "href": ""
+                }
+              ],
+              "images":[
+
+                "https://sdcopmzn.com/Facilities/Seminar-Hall/seminar-hall_3.jpeg",
+                "https://sdcopmzn.com/Facilities/Seminar-Hall/seminar-hall_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Seminar-Hall/seminar-hall_2.jpeg"
+              ]
+            },
+            {
+              "heading": "Temple",
+              "description": "Our college is home to a serene and beautifully maintained temple, providing a tranquil space for prayer, meditation, and reflection. The temple symbolizes harmony and spiritual well-being, offering students and staff a peaceful environment to connect with their inner selves amidst their academic journey.\nSituated within the campus, the temple is a reflection of our college's commitment to nurturing values, culture, and community spirit. Regular prayer sessions and special festivals celebrated here bring everyone together, creating a sense of unity and belonging among students and faculty alike.",
+              "infoLinks": [
+                {
+                  "heading": "",
+                  "href": ""
+                }
+              ],
+              "images":[
+
+                "https://sdcopmzn.com/Facilities/Temple/temple_3.jpeg",
+                "https://sdcopmzn.com/Facilities/Temple/temple_1.jpeg",
+                "https://sdcopmzn.com/Facilities/Temple/temple_2.jpeg"
+              ]
+            }
+          ]
     }
 }

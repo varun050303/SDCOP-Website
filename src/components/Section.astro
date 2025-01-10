@@ -16,7 +16,7 @@ const { background, classes, space = true } = Astro.props;
     backgroundImage: `url('${background === "green" ? greenBg.src : whiteBg.src}')`,
   }}
 >
-  <div class="container mx-auto px-4">
+  <div class=`container mx-auto ${space ? "px-4" : ""}`>
     <slot />
   </div>
 </section>

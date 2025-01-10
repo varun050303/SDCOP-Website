@@ -1,39 +1,131 @@
 ---
+import { Image } from "astro:assets";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
-
-const facilities = [
-  "DIGITAL CLASSROOM",
-  "LIBRARY",
-  "MEDICINAL GARDEN",
-  "COMPUTER LAB",
-  "ANIMAL HOUSE",
-  "MUSEUM",
-  "SPORTS",
-  "SEMINAR HALL",
-  "TEMPLE",
-];
+import Carousel from "../components/Carousel.astro";
+import placeHolderImg from "../assets/placeholder-image.jpg";
+import data from "../../data.json";
 ---
 
 <Layout>
   <Section background="white" classes="flex-1">
     <h1 class="heading text-dark-blue mb-8">Facilities & Infrastructure</h1>
-
-    <div class="facilities space-y-5">
+    <div class="facilities mt-20 space-y-20">
       {
-        facilities.map((facility) => {
-          return <p class="text">{facility}</p>;
-        })
+        data.college.facilities.map((facility, index) => (
+          <Section background="green" space={false} classes="rounded-lg">
+            <div
+              class={`card-container w-full overflow-hidden relative flex sm:flex-col lg:flex-row ${
+                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              } space-x-5`}
+            >
+              <div class="card-image shrink-0 sm:w-full lg:w-1/3 h-auto">
+                {facility.images && facility.images.length > 0 && (
+                  <Carousel
+                    images={facility.images.map((src, imgIndex) => ({
+                      src,
+                      alt: `${facility.heading} - Image ${imgIndex + 1}`,
+                    }))}
+                    instanceId={`facilities-${index}`}
+                    useImage={true}
+                  />
+                )}
+              </div>
+
+              <div class="card-details flex flex-col px-5 py-8 sm:w-auto lg:w-2/3">
+                <h3 class="sub-heading mb-6 text-white">{facility.heading}</h3>
+                <p
+                  id={`description-${index}`}
+                  class="text text-white mb-4 text-justify"
+                >
+                  {facility.description.length > 500
+                    ? facility.description.substring(0, 500) + "..."
+                    : facility.description}
+                </p>
+                <div class="flex items-center justify-between">
+                  {facility.description.length > 500 && (
+                    <button
+                      class="see-more-button text-white font-semibold mt-2"
+                      data-index={index}
+                      data-expanded="false"
+                      data-full-text={facility.description}
+                    >
+                      See More
+                    </button>
+                  )}
+                  {facility.infoLinks.map((link) => {
+                    // Check if the heading contains an image link
+                    const isImage = /\.(png|jpe?g|gif|bmp|svg)$/i.test(
+                      link.heading
+                    );
+                    return (
+                      <a
+                        class="text text-orange-200 underline"
+                        href={link.href}
+                        target="_blank"
+                      >
+                        {isImage ? (
+                          <Image
+                            src={link.heading}
+                            alt="delnet"
+                            width={200}
+                            height={200}
+                          />
+                        ) : (
+                          link.heading
+                        )}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </Section>
+        ))
       }
     </div>
   </Section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".see-more-button");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const index = button.getAttribute("data-index");
+          const descriptionElement = document.querySelector(
+            `#description-${index}`
+          );
+          const fullText = button.getAttribute("data-full-text");
+          const isExpanded = button.getAttribute("data-expanded") === "true";
+
+          if (!isExpanded) {
+            descriptionElement!.textContent = fullText;
+            button.textContent = "Show Less";
+            button.setAttribute("data-expanded", "true");
+          } else {
+            descriptionElement!.textContent =
+              fullText.substring(0, 500) + "...";
+            button.textContent = "See More";
+            button.setAttribute("data-expanded", "false");
+          }
+        });
+      });
+    });
+  </script>
 </Layout>
 
 <style>
   .heading {
-    @apply font-oswald text-[40px] font-[500] tracking-wide;
+    @apply font-oswald text-[40px] font-medium tracking-wide;
+  }
+  .sub-heading {
+    @apply font-oswald text-[30px] font-medium tracking-wide;
   }
   .text {
-    @apply text-2xl font-nunito leading-9;
+    @apply text-xl font-nunito leading-8;
+  }
+  .see-more-button {
+    @apply bg-transparent w-fit text-white border border-white rounded-md px-3 py-2 hover:bg-white hover:text-green-700 transition;
   }
 </style>

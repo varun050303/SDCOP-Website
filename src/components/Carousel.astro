@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 interface Button {
   type: string;
   label: string;
@@ -14,10 +16,16 @@ interface Props {
     cardDescription?: string;
     cardButtons?: Button[];
   }[];
+  useImage?: Boolean;
   autoplayInterval?: number;
 }
 
-const { instanceId, images, autoplayInterval = 5000 } = Astro.props;
+const {
+  instanceId,
+  images,
+  autoplayInterval = 5000,
+  useImage = false,
+} = Astro.props;
 const uniqueId = (suffix: string) => `${instanceId}-${suffix}`;
 ---
 
@@ -33,12 +41,23 @@ const uniqueId = (suffix: string) => `${instanceId}-${suffix}`;
   >
     {
       images.map((image, index) => (
-        <div class="w-full flex-shrink-0 relative" key={index}>
-          <img
-            src={image.src}
-            alt={image.alt}
-            class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
-          />
+        <div class="w-full flex-shrink-0 relative flex place-content-center">
+          {useImage ? (
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={500}
+              height={400}
+              class="max-h-[420px]"
+            />
+          ) : (
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
+              loading="lazy"
+            />
+          )}
           {(image.cardTitle || image.cardDescription) && (
             <div class="absolute bottom-40 left-20 bg-white/60 backdrop-blur-sm rounded-lg p-6 shadow-lg w-[80%] max-w-md">
               {image.cardTitle && (
