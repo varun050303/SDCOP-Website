@@ -17,7 +17,7 @@ interface Props {
 const { testimonials } = Astro.props;
 ---
 
-<div class="w-full overflow-visible">
+<div class="w-full overflow-scroll scrollbar-hide">
   <!-- Carousel Container -->
   <div class="carousel-container relative px-[15%]">
     <!-- Previous Button -->
@@ -140,30 +140,13 @@ const { testimonials } = Astro.props;
     });
 
     // Calculate the translation considering the slide width and margins
-    const slideWidth = 60; // 70% width + 2 * 5% margin
+    const slideWidth = 65; // 70% width + 2 * 5% margin
     carousel.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
   }
 
   // Event Listeners
   prevBtn?.addEventListener("click", () => updateSlide(currentIndex - 1));
   nextBtn?.addEventListener("click", () => updateSlide(currentIndex + 1));
-
-  // Auto-scroll
-  let autoScrollInterval = setInterval(
-    () => updateSlide(currentIndex + 1),
-    5000
-  );
-
-  // Pause auto-scroll on hover
-  carousel?.addEventListener("mouseenter", () =>
-    clearInterval(autoScrollInterval)
-  );
-  carousel?.addEventListener("mouseleave", () => {
-    autoScrollInterval = setInterval(
-      () => updateSlide(currentIndex + 1),
-      15000
-    );
-  });
 
   // Initial setup
   updateSlide(0);
