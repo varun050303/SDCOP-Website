@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import "../styles/global.css";
+
+import { getCollection } from "astro:content";
+
+const researchArticles = await getCollection("research-and-developments");
+// Render the markdown content
+const renderedArticles = await Promise.all(
+  researchArticles.map(async (article) => {
+    const { Content } = await article.render();
+    return { ...article, Content };
+  })
+);
+---
+
+<Layout>
+  <Section
+    background="white"
+    classes="sm:overflow-scroll sm:max-w-fit sm:m-auto lg:overflow-none lg:max-w-[100%]"
+  >
+    <!-- Tab buttons -->
+    <div class="flex flex-wrap gap-4 mb-6">
+      {
+        renderedArticles.map((research, index) => (
+          <button
+            class="tab-button px-4 py-2 bg-gray-200 text-gray-700 rounded-md mr-2"
+            data-tab={`tab${index}`}
+          >
+            {research.data.title}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Tab content -->
+    <div class="tab-content-container">
+      {
+        renderedArticles.map((research, index) => (
+          <div class="tab-content hidden prose max-w-none" id={`tab${index}`}>
+            <research.Content />
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .tab-button.active {
+    font-weight: bold;
+    background-color: green;
+    color: white;
+  }
+
+  .tab-content.active {
+    @apply block;
+  }
+  /* Style tables */
+  .prose table {
+    @apply w-full border-collapse;
+  }
+  .prose th,
+  .prose td {
+    @apply border p-2 text-sm;
+  }
+  .prose th {
+    @apply bg-gray-50;
+  }
+  /* Improve table responsiveness */
+  @media (max-width: 768px) {
+    .prose table {
+      @apply block overflow-x-auto;
+    }
+  }
+</style>
+
+<script>
+  // Initialize tabs
+  function initializeTabs() {
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    // Show first tab by default
+    if (tabButtons.length > 0 && tabContents.length > 0) {
+      tabButtons[0].classList.add("active");
+      tabContents[0].classList.add("active");
+    }
+
+    // Add click handlers
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const tabId = button.getAttribute("data-tab");
+
+        // Remove active class from all buttons and contents
+        tabButtons.forEach((btn) => btn.classList.remove("active"));
+        tabContents.forEach((content) => content.classList.remove("active"));
+
+        // Add active class to clicked button and corresponding content
+        button.classList.add("active");
+        document.getElementById(tabId)?.classList.add("active");
+      });
+    });
+  }
+
+  // Run initialization when page loads
+  document.addEventListener("DOMContentLoaded", initializeTabs);
+</script>

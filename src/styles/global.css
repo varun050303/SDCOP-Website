@@ -1,0 +1,36 @@
+table {
+  border: 1px solid #dededf;
+  height: 100%;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 1px;
+  text-align: left;
+}
+
+caption {
+  caption-side: top;
+  text-align: left;
+}
+
+th {
+  border: 2px solid #000000;
+  background-color: #009966;
+  color: #ffffff;
+  padding: 25px;
+  text-align: center;
+}
+
+td {
+  border: 2px solid #000000;
+  padding: 25px;
+}
+
+tr:nth-child(even) td {
+  background-color: #d6d6d6;
+  color: #000000;
+}
+
+tr:nth-child(odd) td {
+  background-color: #ffffff;
+  color: #000000;
+}
