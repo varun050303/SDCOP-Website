@@ -2,7 +2,7 @@
 title: Titles-Of Dissertations
 ---
 
-| S. No. | Name of the supervisor | Name of the candidate | Type of project | Title of the thesis | Duration | Year |
+| S.No. | Name of the supervisor | Name of the candidate | Type of project | Title of the thesis | Duration | Year |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Ms. Pallavi Gautam | Vaibhav | Thesis | PHARAMCOGNOSTICAL STUDY AND ANTI-CANCER POTENTIAL OF SOME TRADITIONAL PLANTS | 1 Year | 2023 |
 | 2 | Dr. Bhuwanendra Singh | Vishal Sharma | Thesis | DETERMINATION OF PHARMACOGNOSTICAL AND PHYTOCHEMICAL STANDARDS TO ASSESS THE INVITRO ANTICANCER POTENTIAL OF POLYHERBAL EXTRACT | 1 Year | 2023 |

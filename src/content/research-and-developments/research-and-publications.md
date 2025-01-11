@@ -1,7 +1,7 @@
 ---
 title: Research Publications
 ---
-| S No | Authors | Title | Journal | Volume Issue Page Numbers | Year |
+| S.No. | Authors | Title | Journal | Volume Issue Page Numbers | Year |
 | --- | --- | --- | --- | --- | --- |
 | 1 | Alimuddin Saifi, Alok Sharma<br> Anurag Chaudhary<br> Nazia Siddiqui<br> Vrish Dhwaj<br> Ashwlayan<br> Bhuwanendra Singh | Unveiling the Latest Breakthroughs: A<br> Comprehensive Review of the Therapeutic Activity and Safety Profile of Aloe vera | Current Drug Safety | Vol 19 | 2024 |
 | 2 | Mahima<br> Bhuwanendra Singh <br>  Arvind Kumar Vaishali Harendra Singh Piyush Kumar Singhal | Formulation, evaluation and characterization of novel oil inclusion complex, obtained from leaves of Acorus calamus Linn to prove the neurological (Anxiolytic) potential of the drug | Phytomedicine Plus | 4 (2024) 1-12 | 2024 |

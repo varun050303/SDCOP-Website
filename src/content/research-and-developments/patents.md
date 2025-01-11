@@ -2,7 +2,7 @@
 title: Patents
 ---
 
-| S No | Title | Application Awarded (Grant no ) no | National/International/Country | Name of Inventors | Status <br> Published/Granted | Year |
+| S.No. | Title | Application Awarded (Grant no ) no | National/International/Country | Name of Inventors | Status <br> Published/Granted | Year |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Photographic cinematographic and optical apparatus | 383000-001 | Indian | Dr Meenakshi Bhatt Dr Ganesh Kumar Dr Vaishali  Dr Suman Pant Dr Neelam Pant Apeksha Rawat | Published | 2023 |
 | 2 | Automated portable device for extraction of volatile oils | 395860-001 | Indian | Dr Sangeetha Jayaraman Dr Prasanna Shama Khandige Dr Vandana Ssdananda Dr Vaishali Singh Dr Chandra Kant Sharma Dr Monika Sharma Ms Anachal Gupta Amol Sampat Deshmukh Prof Suraj Ramchandrarao Shinde | Published | 2023 |
