@@ -480,6 +480,8 @@ const facultyData = [
     src: placeHolderImg,
   },
 ];
+
+import "../styles/global.css";
 ---
 
 <Layout>
@@ -517,38 +519,24 @@ const facultyData = [
       <div class="tab-content">
         <!-- Current Year Faculty -->
         <div id="current" class="faculty-table">
-          <table
-            class="table-auto w-full border-collapse border max-w-4xl mx-auto"
-          >
+          <table>
             <thead>
-              <tr class="bg-gray-200">
-                <th class="border border-gray-300 px-4 py-2">S. No.</th>
-                <th class="border border-gray-300 px-4 py-2">Name</th>
-                <th class="border border-gray-300 px-4 py-2">Specialization</th>
-                <th class="border border-gray-300 px-4 py-2">Designation</th>
+              <tr>
+                <th>S. No.</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Designation</th>
               </tr>
             </thead>
             <tbody>
               {
                 facultyData.map((faculty, index) => (
                   <>
-                    <tr
-                      class="hover:bg-gray-100 cursor-pointer"
-                      data-index={index}
-                      onclick="toggleDetails(event)"
-                    >
-                      <td class="border border-gray-300 px-4 py-2 text-center">
-                        {index + 1}.
-                      </td>
-                      <td class="border border-gray-300 px-4 py-2 text-center">
-                        {faculty.name}
-                      </td>
-                      <td class="border border-gray-300 px-4 py-2 text-center">
-                        {faculty.specialization}
-                      </td>
-                      <td class="border border-gray-300 px-4 py-2 text-center">
-                        {faculty.designation}
-                      </td>
+                    <tr data-index={index} onclick="toggleDetails(event)">
+                      <td>{index + 1}.</td>
+                      <td>{faculty.name}</td>
+                      <td>{faculty.specialization}</td>
+                      <td>{faculty.designation}</td>
                     </tr>
                     {/* <tr id={`details-${index}`} class="hidden">
                       <td
@@ -565,10 +553,7 @@ const facultyData = [
                       </td>
                     </tr> */}
                     <tr id={`details-${index}`} class="hidden">
-                      <td
-                        colspan="4"
-                        class="border border-gray-300 px-4 py-2 bg-gray-50"
-                      >
+                      <td colspan="4">
                         <div class="flex items-start gap-4">
                           <Image
                             src={faculty.src}
