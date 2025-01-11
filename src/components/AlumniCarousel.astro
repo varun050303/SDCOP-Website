@@ -1,0 +1,187 @@
+---
+// TestimonialCarousel.astro
+import { Image } from "astro:assets";
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  designation: string;
+  avatar: string;
+  companyLogo?: string;
+}
+
+interface Props {
+  testimonials: Testimonial[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<div class="w-full overflow-visible">
+  <!-- Carousel Container -->
+  <div class="carousel-container relative px-[15%]">
+    <!-- Previous Button -->
+    <button
+      class="absolute left-[1%] top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+      id="prevBtn"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15 19l-7-7 7-7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+
+    <!-- Next Button -->
+    <button
+      class="absolute right-[1%] top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+      id="nextBtn"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 5l7 7-7 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+
+    <!-- Slides Container -->
+    <div
+      class="carousel flex transition-all duration-500 ease-in-out -mx-[10%]"
+    >
+      {
+        testimonials.map((testimonial, index) => (
+          <div
+            class="carousel-slide shrink-0 w-[70%] px-6 py-16 md:py-24 transition-all duration-500 rounded-[2rem] mx-[1%]"
+            data-index={index}
+          >
+            <div class="max-w-3xl mx-auto text-center">
+              {testimonial.companyLogo && (
+                <img
+                  src={testimonial.companyLogo}
+                  alt="Company Logo"
+                  class="h-8 mb-8 mx-auto"
+                />
+              )}
+
+              <blockquote class="text-xl md:text-lg font-medium text-gray-900 mb-8">
+                "{testimonial.quote}"
+              </blockquote>
+
+              <div class="flex items-center justify-center gap-4">
+                <Image
+                  src={testimonial.avatar}
+                  alt={testimonial.name}
+                  width={48}
+                  height={48}
+                  class="rounded-full object-cover"
+                />
+                <div class="text-left">
+                  <div class="font-medium text-sm text-gray-900">
+                    {testimonial.name}
+                  </div>
+                  <div class="text-xs text-gray-600">
+                    {testimonial.designation}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  const carousel = document.querySelector(".carousel");
+  const slides = document.querySelectorAll(".carousel-slide");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let currentIndex = 0;
+  const colors = ["#EBF5FF", "#FCF2FF", "#F0FFF4"]; // Blue, Pink, Green backgrounds
+
+  function updateSlide(newIndex: number) {
+    const totalSlides = slides.length;
+    currentIndex = (newIndex + totalSlides) % totalSlides;
+
+    // Update transform and background colors
+    slides.forEach((slide, index) => {
+      const colorIndex = (index - currentIndex + totalSlides) % totalSlides;
+      slide.style.backgroundColor = colors[colorIndex];
+
+      if (index === currentIndex) {
+        slide.style.transform = "scale(1)";
+        slide.style.opacity = "1";
+        slide.style.zIndex = "1";
+      } else {
+        slide.style.transform = "scale(0.95)";
+        slide.style.opacity = "0.8";
+        slide.style.zIndex = "0";
+      }
+    });
+
+    // Calculate the translation considering the slide width and margins
+    const slideWidth = 60; // 70% width + 2 * 5% margin
+    carousel.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+  }
+
+  // Event Listeners
+  prevBtn?.addEventListener("click", () => updateSlide(currentIndex - 1));
+  nextBtn?.addEventListener("click", () => updateSlide(currentIndex + 1));
+
+  // Auto-scroll
+  let autoScrollInterval = setInterval(
+    () => updateSlide(currentIndex + 1),
+    5000
+  );
+
+  // Pause auto-scroll on hover
+  carousel?.addEventListener("mouseenter", () =>
+    clearInterval(autoScrollInterval)
+  );
+  carousel?.addEventListener("mouseleave", () => {
+    autoScrollInterval = setInterval(
+      () => updateSlide(currentIndex + 1),
+      15000
+    );
+  });
+
+  // Initial setup
+  updateSlide(0);
+</script>
+
+<style>
+  .carousel-container {
+    width: 100%;
+    overflow: visible;
+  }
+
+  .carousel {
+    display: flex;
+    transform: translateX(0);
+  }
+
+  .carousel-slide {
+    transform-origin: center;
+    transition: all 0.5s ease-in-out;
+  }
+</style>

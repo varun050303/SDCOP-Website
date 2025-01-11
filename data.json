@@ -328,6 +328,56 @@
                 "https://sdcopmzn.com/Facilities/Temple/temple_2.jpeg"
               ]
             }
-          ]
+        ],
+        "alumni":[
+          {
+            "avatar":"https://sdcopmzn.com/Alumni-Images/alumni_3.png",
+            "name":"MS. SHWETA PUNDIR",
+            "designation":"Research officer, Patanjali Research Institute",
+            "quote":"Success stems from hard work, perseverance, and passion. They taught me to integrate hard work with vision, guided by supportive teachers. I cherish my college days and wish it continued success."
+          },
+          {
+            "avatar":"https://sdcopmzn.com/Alumni-Images/alumni_4.png",
+            "name":"Upendra Yadav",
+            "designation":"Product Specialist at Pfizer Vaccines",
+            "quote":"I am deeply grateful for the institution’s role in shaping my career. The supportive faculty and enriching environment laid a strong foundation for my journey. Today, as a Product Specialist at Pfizer Vaccines, I proudly attribute my success to the values instilled during my academic years."
+          },
+          {
+            "avatar":"https://sdcopmzn.com/Alumni-Images/alumni_5.png",
+            "name":"MS. AARTI GARG",
+            "designation":"Chemo Drug Formular, Max Hospital(Delhi)",
+            "quote":"I am Aarti Garg, a Pharmacy alumna of 2012. The hands-on learning and mentorship during my academic years shaped my journey to becoming a Chemo Drug Formular at Max Hospital, Delhi. Grateful for the foundation that paved the way for my success!"
+          },
+          {
+            "avatar":"https://sdcopmzn.com/Alumni-Images/alumni_12.jpeg",
+            "name":"Piyush Kumar Singhal",
+            "designation":"Professor at SD Institute of Pharmacy",
+            "quote":"As an alumnus, I am grateful for the education and experiences that shaped my career. The knowledge and values I gained continue to guide me. Now, as a professor at SD Institute of Pharmacy, I strive to inspire the next generation with the same commitment to excellence.\nज्ञानार्थ प्रवेश - सेवार्थ प्रस्थान"
+          },
+          {
+            "avatar":"https://sdcopmzn.com/Alumni-Images/alumni_11.png",
+            "name":"Prateek Uttreja",
+            "designation":"MS in Pharmaceutical Science from Mississippi University",
+            "quote":"I am deeply grateful for the transformative experience and invaluable learning during my time at the institution. The unwavering support, advanced facilities, and dynamic learning environment shaped my professional journey. The skills and values instilled enabled me to pursue an MS in Pharmaceutical Science and achieve success in my endeavors."
+          },
+          {
+            "avatar":"https://sdcopmzn.com/Alumni-Images/alumni_11.png",
+            "name":"Mr. Gaurav",
+            "designation":"Government Pharmacist at PHC, Khatauli",
+            "quote":"I am Gaurav, an alumnus from the Pharmacy batch of 2009. Reflecting on my academic and professional journey, I am grateful for the institution that laid the foundation of my career. The dedicated faculty, hands-on training, and exposure to real-world challenges prepared me to excel as a Government Pharmacist at PHC, Khatauli. Thank you for shaping the person I am today."
+          },
+          {
+            "avatar":"https://sdcopmzn.com/Alumni-Images/alumni_8.png",
+            "name":"Aaryan Tyagi",
+            "designation":"Pfizer's Sales Department",
+            "quote":"Reflecting on my journey, I am grateful for the strong academic foundation and support that shaped my professional path. The institution instilled technical expertise and essential skills in communication, teamwork, and leadership. As I continue with Pfizer’s Sales Department, I owe much of my success to the nurturing environment that helped me grow."
+          },
+          {
+            "avatar":"https://sdcopmzn.com/Alumni-Images/alumni_10.png",
+            "name":"Mr. Tarun Sharma",
+            "designation":"GOVERNMENT PHARMACIST, DISTRICT HOSPITAL, MUZAFFARNAGAR",
+            "quote":"The practical learning experiences and the guidance of supportive faculty at SDCOP&VS prepared me to face real-world challenges with confidence and competence. I am deeply grateful to the institution for its pivotal role in my growth and success."
+          }
+        ]
     }
 }

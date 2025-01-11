@@ -5,14 +5,16 @@ interface Props {
   background: string;
   classes?: string;
   space?: boolean;
+  styles?: object;
 }
 
-const { background, classes, space = true } = Astro.props;
+const { background, classes, space = true, styles = {} } = Astro.props;
 ---
 
 <section
   class=`w-full bg-contain ${classes} ${space ? "pt-14 pb-16" : ""}`
   style={{
+    ...styles,
     backgroundImage: `url('${background === "green" ? greenBg.src : whiteBg.src}')`,
   }}
 >
