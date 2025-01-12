@@ -1,12 +1,9 @@
 ---
 import Carousel from "../components/Carousel.astro";
 import Layout from "../layouts/Layout.astro";
-import campusStudents from "../assets/hero-section/campus_students.jpg";
 import Section from "../components/Section.astro";
 import collegeCampus from "../assets/campus/college_campus.jpg";
 import ecoLocation from "../assets/eco-location.png";
-import collegeLab from "../assets/campus/college_laboratory.png";
-import collegeGarden from "../assets/campus/college_garden.jpg";
 import pharmacyCouncil from "../assets/organizations/pharmacy-council-of-india.png";
 import boardOfTechnicalEd from "../assets/organizations/board-of-technical-education.png";
 import ministryOfHealth from "../assets/organizations/ministry-of-health-family.png";
@@ -20,11 +17,11 @@ import { Image } from "astro:assets";
 import data from "../../data.json";
 import TestimonialCarousel from "../components/TestimonialCarousel.astro";
 import Recruiters from "../components/Recruiters.astro";
-import { map } from "astro:schema";
 import FacultyCarousel from "../components/FacultyCarousel.astro";
+
 const images = [
   {
-    src: campusStudents.src,
+    src: "hero-section/campus_students.jpg",
     alt: "Students on campus",
     cardTitle: "25 Years of Experience",
     cardDescription:
@@ -70,26 +67,31 @@ const organizations = [
     src: pharmacyCouncil,
     alt: "Pharmacy Council of India",
     name: "Pharmacy Council of India, New Delhi",
+    href: "https://www.pci.nic.in/",
   },
   {
     src: boardOfTechnicalEd,
     alt: "Board of Technical Education",
     name: "Board of Technical Education, Lucknow",
+    href: "https://bteup.ac.in/webapp/home.aspx",
   },
   {
     src: ministryOfHealth,
     alt: "Ministry of Health and Family Welfare",
     name: "Ministry of Health & Family Welfare, New Delhi",
+    href: "https://mohfw.gov.in/",
   },
   {
     src: radioSDMzn,
     alt: "Radio SD MZN",
     name: "Radio SD 90.8FM",
+    href: "https://radiosdfm.com/",
   },
   {
     src: logoAKTU,
     alt: "APJ Abdul Kalam Technical University",
     name: "Dr APJ Abdul Kalam Technical University (AKTU), Lucknow",
+    href: "https://aktu.ac.in/",
   },
 ];
 
@@ -175,16 +177,18 @@ images.sort((a, b) => {
         {
           organizations.map((orgn) => {
             return (
-              <div class="mt-14 flex flex-col items-center">
-                <div class="w-36 h-36 mx-auto">
-                  <Image src={orgn.src} alt={orgn.alt} />
+              <a href={orgn.href} target="_blank">
+                <div class="mt-14 flex flex-col items-center">
+                  <div class="w-36 h-36 mx-auto">
+                    <Image src={orgn.src} alt={orgn.alt} />
+                  </div>
+                  <div class="mt-6">
+                    <p class="text-pretty text-center text-2xl font-oswald">
+                      {orgn.name}
+                    </p>
+                  </div>
                 </div>
-                <div class="mt-6">
-                  <p class="text-pretty text-center text-2xl font-oswald">
-                    {orgn.name}
-                  </p>
-                </div>
-              </div>
+              </a>
             );
           })
         }

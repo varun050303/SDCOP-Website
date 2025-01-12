@@ -39,6 +39,7 @@ const uniqueId = (suffix: string) => `${instanceId}-${suffix}`;
     data-instance-id={instanceId}
     data-autoplay-interval={autoplayInterval}
   >
+    {console.log("entered")}
     {
       images.map((image, index) => (
         <div class="w-full flex-shrink-0 relative flex place-content-center">
@@ -55,7 +56,6 @@ const uniqueId = (suffix: string) => `${instanceId}-${suffix}`;
               src={image.src}
               alt={image.alt}
               class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
-              loading="lazy"
             />
           )}
           {(image.cardTitle || image.cardDescription) && (
@@ -75,7 +75,6 @@ const uniqueId = (suffix: string) => `${instanceId}-${suffix}`;
                   {image.cardButtons.map((button, buttonIndex) => (
                     <a href={button.link}>
                       <button
-                        key={buttonIndex}
                         class={`px-6 py-3 rounded-full font-nunito ${
                           button.type === "primary"
                             ? "bg-dark-blue text-white"
@@ -142,7 +141,6 @@ const uniqueId = (suffix: string) => `${instanceId}-${suffix}`;
     {
       images.map((_, index) => (
         <button
-          key={index}
           class="w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-colors duration-300 indicator-dot"
           data-index={index}
           aria-label={`Go to slide ${index + 1}`}
