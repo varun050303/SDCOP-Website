@@ -1,13 +1,104 @@
 ---
+import Recruiters from "../components/Recruiters.astro";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
+
+const rolesAndResponsibility = [
+  {
+    heading: "Preparation of Placement Brochure",
+    description:
+      " Creating a detailed and professional placement brochure for final placements.",
+  },
+  {
+    heading: "Pre-placement Visits (PPV)",
+    description:
+      "Organizing visits to potential companies to build connections and explore opportunities.",
+  },
+  {
+    heading: "Communication & Networking",
+    description:
+      "Building strong relationships with recruiters and fostering professional networks.",
+  },
+  {
+    heading: "Invitation to Recruiters",
+    description:
+      " Encouraging potential recruiters to visit the Institute for placement activities.",
+  },
+  {
+    heading: "Ongoing Placement Activities",
+    description:
+      "Ensuring continuation of placement efforts until all students are placed.",
+  },
+  {
+    heading: "Candidate Grooming & Training",
+    description:
+      "Preparing students through skill-building sessions to enhance their chances of selection.",
+  },
+  {
+    heading: "Follow-up & Administration",
+    description:
+      "Handling joining formalities and other administrative tasks for smooth placements.",
+  },
+];
 ---
 
 <Layout>
   <Section background="white" classes="flex-1">
-    <h1 class="heading text-dark-blue mb-20">Placement Record</h1>
-    <div class="mb-20">
+    <h1 class="heading text-dark-blue mb-5">Placement Record</h1>
+    <h3 class="text">
+      Role & Responsibilities of Placement and Career guidance cell:
+    </h3>
+    <div class="responsibilities-container">
+      {
+        rolesAndResponsibility.map((r) => (
+          <div class="responsibility">
+            <h3>{r.heading}</h3>
+            <p>{r.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="my-20">
+      <table>
+        <thead>
+          <tr>
+            <th>S. No.</th>
+            <th>Name</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Dr. Bhuwanendra Singh</td>
+            <td>Chairperson</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Dr. Popin Kumar</td>
+            <td>Member</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Mr. Ishan Aggarwal</td>
+            <td>Member</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Mr. Sanjeev Ratan Tiwari</td>
+            <td>Member</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Mr. Vishal Sharma</td>
+            <td>Member</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="my-20">
       <table>
         <thead>
           <tr>
@@ -48,9 +139,12 @@ import "../styles/global.css";
         </tbody>
       </table>
     </div>
+
+    <Recruiters />
+
     <!-- Canvas for the chart -->
-    <div class="max-w-2xl m-auto space-y-28">
-      <canvas id="placementChart" class="chart-canvas" width="200"></canvas>
+    <div class="max-w-2xl my-20 mx-auto space-y-28 bg-white">
+      <!-- <canvas id="placementChart" class="chart-canvas" width="200"></canvas> -->
       <canvas id="higherStudiesPlacementChart" width="200"></canvas>
     </div>
   </Section>
@@ -80,45 +174,45 @@ import "../styles/global.css";
   );
 
   document.addEventListener("DOMContentLoaded", function () {
-    function createPlacementChart() {
-      const ctx = document?.getElementById("placementChart")?.getContext("2d");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: ["2023-2024", "2022-2023", "2021-2022", "2020-2021"], // Years from your table
-          datasets: [
-            {
-              label: "Total No. of Students (N)",
-              data: [45, 80, 54, 53], // Total No. of Students
-              backgroundColor: "rgba(60, 179, 113,0.8)", // Green
-              borderColor: "rgba(54, 162, 235, 1)",
-              borderWidth: 1,
-            },
-            {
-              label: "Placement",
-              data: [32, 62, 33, 40], // Students placed
-              backgroundColor: "rgba(255, 165, 0, 0.8)", // Yellow
-              borderColor: "rgba(255, 99, 132, 1)",
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-          plugins: {
-            legend: {
-              display: true,
-              position: "bottom",
-            },
-          },
-        },
-      });
-    }
+    // function createPlacementChart() {
+    //   const ctx = document?.getElementById("placementChart")?.getContext("2d");
+    //   new Chart(ctx, {
+    //     type: "bar",
+    //     data: {
+    //       labels: ["2023-2024", "2022-2023", "2021-2022", "2020-2021"], // Years from your table
+    //       datasets: [
+    //         {
+    //           label: "Total No. of Students (N)",
+    //           data: [45, 80, 54, 53], // Total No. of Students
+    //           backgroundColor: "rgba(60, 179, 113,0.8)", // Green
+    //           borderColor: "rgba(54, 162, 235, 1)",
+    //           borderWidth: 1,
+    //         },
+    //         {
+    //           label: "Placement",
+    //           data: [32, 62, 33, 40], // Students placed
+    //           backgroundColor: "rgba(255, 165, 0, 0.8)", // Yellow
+    //           borderColor: "rgba(255, 99, 132, 1)",
+    //           borderWidth: 1,
+    //         },
+    //       ],
+    //     },
+    //     options: {
+    //       responsive: true,
+    //       scales: {
+    //         y: {
+    //           beginAtZero: true,
+    //         },
+    //       },
+    //       plugins: {
+    //         legend: {
+    //           display: true,
+    //           position: "bottom",
+    //         },
+    //       },
+    //     },
+    //   });
+    // }
 
     function createHigherStudiesPlacementChart() {
       const ctx = document
@@ -164,12 +258,15 @@ import "../styles/global.css";
               display: true,
               position: "bottom",
             },
+            customCanvasBackgroundColor: {
+              color: "lightGreen",
+            },
           },
         },
       });
     }
 
-    createPlacementChart();
+    // createPlacementChart();
     createHigherStudiesPlacementChart();
   });
 </script>
@@ -187,5 +284,47 @@ import "../styles/global.css";
   .chart-canvas {
     width: 100%; /* Full width */
     height: 400px; /* Set the desired height */
+  }
+  .responsibilities-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+
+  .responsibility {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .responsibility:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: #0056b3;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #6c757d;
   }
 </style>
