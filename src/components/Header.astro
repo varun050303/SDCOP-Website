@@ -326,39 +326,53 @@ const currentPath = pathName.slice(1);
 </script>
 
 <script>
-  // Handle smooth scrolling for anchor links with precise offset
+  // Function to scroll to element
+  function scrollToElement(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      const header = document.querySelector("header");
+      const headerHeight = header ? header.offsetHeight : 0;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  }
+
+  // Handle anchor links
   document.querySelectorAll('a[href^="/#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-
       const hash = this.getAttribute("href").split("#")[1];
-      const element = document.getElementById(hash);
 
-      if (element) {
-        // If not on home page, navigate first
-        if (window.location.pathname !== "/") {
-          window.location.href = `/#${hash}`;
-          return;
-        }
-
-        // Get header height
-        const header = document.querySelector("header");
-        const headerHeight = header ? header.offsetHeight : 0;
-
-        // Calculate exact scroll position
-        const elementPosition =
-          element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerHeight;
-
-        // Smooth scroll to element
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-
-        // Update URL without jump
+      // If not on home page, store the hash in sessionStorage and navigate
+      if (window.location.pathname !== "/") {
+        e.preventDefault();
+        sessionStorage.setItem("scrollTo", hash);
+        window.location.href = "/";
+      } else {
+        // If on home page, prevent default and scroll
+        e.preventDefault();
+        scrollToElement(hash);
         history.pushState(null, null, `#${hash}`);
       }
     });
+  });
+
+  // Check for stored hash on page load
+  window.addEventListener("load", () => {
+    const scrollTo = sessionStorage.getItem("scrollTo");
+    if (scrollTo) {
+      // Clear the stored value
+      sessionStorage.removeItem("scrollTo");
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        scrollToElement(scrollTo);
+        history.pushState(null, null, `#${scrollTo}`);
+      }, 100);
+    }
   });
 </script>
