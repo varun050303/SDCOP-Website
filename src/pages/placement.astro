@@ -1,0 +1,191 @@
+---
+import Section from "../components/Section.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+---
+
+<Layout>
+  <Section background="white" classes="flex-1">
+    <h1 class="heading text-dark-blue mb-20">Placement Record</h1>
+    <div class="mb-20">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>2023-2024</th>
+            <th>2022-2023</th>
+            <th>2021-2022</th>
+            <th>2020-2021</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Total No. of Final Year Students (N)</td>
+            <td>45</td>
+            <td>80</td>
+            <td>54</td>
+            <td>53</td>
+          </tr>
+          <tr>
+            <td>No. of students placed in companies or Government Sector (x)</td
+            >
+            <td>32</td>
+            <td>62</td>
+            <td>33</td>
+            <td>40</td>
+          </tr>
+          <tr>
+            <td
+              >No. of students admitted to higher studies with valid qualifying
+              scores (GATE or equivalent State or National Level Tests, GRE,
+              GMAT etc.) (y)</td
+            >
+            <td>15</td>
+            <td>13</td>
+            <td>19</td>
+            <td>12</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Canvas for the chart -->
+    <div class="max-w-2xl m-auto space-y-28">
+      <canvas id="placementChart" class="chart-canvas" width="200"></canvas>
+      <canvas id="higherStudiesPlacementChart" width="200"></canvas>
+    </div>
+  </Section>
+</Layout>
+
+<script>
+  import {
+    Chart,
+    BarController,
+    BarElement,
+    CategoryScale,
+    LinearScale,
+    Title,
+    Tooltip,
+    Legend,
+  } from "chart.js";
+
+  // Register all necessary components with Chart.js
+  Chart.register(
+    BarController,
+    BarElement,
+    CategoryScale,
+    LinearScale,
+    Title,
+    Tooltip,
+    Legend
+  );
+
+  document.addEventListener("DOMContentLoaded", function () {
+    function createPlacementChart() {
+      const ctx = document?.getElementById("placementChart")?.getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["2023-2024", "2022-2023", "2021-2022", "2020-2021"], // Years from your table
+          datasets: [
+            {
+              label: "Total No. of Students (N)",
+              data: [45, 80, 54, 53], // Total No. of Students
+              backgroundColor: "rgba(60, 179, 113,0.8)", // Green
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+            {
+              label: "Placement",
+              data: [32, 62, 33, 40], // Students placed
+              backgroundColor: "rgba(255, 165, 0, 0.8)", // Yellow
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: "bottom",
+            },
+          },
+        },
+      });
+    }
+
+    function createHigherStudiesPlacementChart() {
+      const ctx = document
+        ?.getElementById("higherStudiesPlacementChart")
+        ?.getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["2023-2024", "2022-2023", "2021-2022", "2020-2021"], // Years from your table
+          datasets: [
+            {
+              label: "Total No. of Students (N)",
+              data: [45, 80, 54, 53], // Total No. of Students
+              backgroundColor: "rgba(60, 179, 113,0.8)", // Green
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+            {
+              label: "Higher Studies",
+              data: [15, 13, 19, 12], // Students placed
+              backgroundColor: "rgba(255, 160, 0, 0.8)", // Red
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 1,
+            },
+            {
+              label: "Other than Higher Studies",
+              data: [32, 62, 33, 40], // Students placed
+              backgroundColor: "rgba(90, 90, 90, 0.8)", // Red
+              borderColor: "rgba(90, 99, 90, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: "bottom",
+            },
+          },
+        },
+      });
+    }
+
+    createPlacementChart();
+    createHigherStudiesPlacementChart();
+  });
+</script>
+
+<style>
+  .heading {
+    @apply font-oswald text-[40px] font-[500] tracking-wide;
+  }
+  .text {
+    @apply text-2xl font-nunito leading-9;
+  }
+  .button {
+    @apply bg-navy-blue rounded-full text-white drop-shadow-xl hover:underline hover:opacity-80 hover:transform hover:translate-y-0.5;
+  }
+  .chart-canvas {
+    width: 100%; /* Full width */
+    height: 400px; /* Set the desired height */
+  }
+</style>

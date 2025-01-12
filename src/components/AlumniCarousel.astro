@@ -140,8 +140,8 @@ const { testimonials } = Astro.props;
     });
 
     // Calculate the translation considering the slide width and margins
-    const slideWidth = 65; // 70% width + 2 * 5% margin
-    carousel.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+    const slideWidth = 70; // 70% width + 2 * 5% margin
+    carousel!.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
   }
 
   // Event Listeners
