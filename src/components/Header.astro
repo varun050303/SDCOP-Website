@@ -7,21 +7,51 @@ const affiliation =
 
 const loginText = "AKTU Login";
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Admission", href: "/courses" },
-  { name: "Contact Us", href: "/contact" },
-  { name: "Faculty", href: "/faculty" },
+  {
+    name: "Home",
+    href: "/",
+  },
+  {
+    name: "About",
+    subItems: [
+      { name: "Overview", href: "/about" },
+      { name: "Mission", href: "/#mission" },
+      { name: "Vision", href: "/#vision" },
+      { name: "Committee", href: "/commitee" },
+      { name: "Audit Report", href: "/audit-report" },
+    ],
+  },
+  {
+    name: "Admission",
+    subItems: [
+      { name: "M.Pharm", href: "/courses" },
+      { name: "B.Pharm", href: "/courses" },
+      { name: "D.Pharm", href: "/courses" },
+    ],
+  },
+  {
+    name: "Contact Us",
+    href: "/contact",
+  },
+  {
+    name: "Faculty",
+    subItems: [
+      { name: "Faculty List", href: "/faculty" },
+      { name: "Research & Publications", href: "/research-and-publications" },
+    ],
+  },
+  {
+    name: "Other",
+    subItems: [
+      { name: "Grievance", href: "/grievance" },
+      { name: "IQAC", href: "/" },
+      { name: "Events", href: "/events" },
+      { name: "Alumni", href: "/alumni" },
+      { name: "Audit Report", href: "/audit-report" },
+      { name: "Facilities & Infrastructure", href: "/facilities-infra" },
+    ],
+  },
 ];
-const otherLinks = [
-  { name: "Grievance", href: "/grievance" },
-  { name: "IQAC", href: "/" },
-  { name: "Events", href: "/events" },
-  { name: "Alumni", href: "/alumni" },
-  { name: "Audit Report", href: "/audit-report" },
-  { name: "Facilities & Infrastructure", href: "/facilities-infra" },
-];
-
 const pathName = new URL(Astro.request.url).pathname;
 const currentPath = pathName.slice(1);
 ---
@@ -51,22 +81,39 @@ const currentPath = pathName.slice(1);
     >
       {
         navLinks.map((link) => {
-          const isActive = currentPath === link.href.slice(1);
+          const isActive = link.href && currentPath === link.href.slice(1);
           return (
-            <a
-              href={link.href}
-              class={
-                isActive
-                  ? "active tracking-wide"
-                  : "text-white tracking-wide hoverEffect"
-              }
-            >
-              {link.name}
-            </a>
+            <div class="relative group">
+              <a
+                href={link.href}
+                class={
+                  isActive
+                    ? "active tracking-wide"
+                    : "text-white tracking-wide hoverEffect"
+                }
+              >
+                {link.name}
+                {link.subItems && (
+                  <span class="rotate-90 inline-block">{">"}</span>
+                )}
+              </a>
+              {link.subItems && (
+                <div class="absolute hidden before:absolute before:rotate-180 before:-top-4 before:left-6 before:-ml-2 before:border-t-white before:border-x-transparent before:border-b-transparent before:content-[''] before:border-8 group-hover:block hover:block left-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-20">
+                  {link.subItems.map((subItem) => (
+                    <a
+                      href={subItem.href}
+                      class="block px-4 py-2 text-navy-blue hover:bg-gray-100 transition"
+                    >
+                      {subItem.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           );
         })
       }
-      <div class="relative group">
+      <!-- <div class="relative group">
         <a href="#" class="text-white tracking-wide hoverEffect">Other</a>
         <div
           class="absolute hidden before:absolute before:rotate-180 before:-top-4 before:left-6 before:-ml-2 before:border-t-white before:border-x-transparent before:border-b-transparent before:content-[''] before:border-8 group-hover:block hover:block left-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-20"
@@ -82,7 +129,7 @@ const currentPath = pathName.slice(1);
             ))
           }
         </div>
-      </div>
+      </div> -->
     </nav>
 
     <!-- Login Link -->
@@ -92,9 +139,15 @@ const currentPath = pathName.slice(1);
         type="_blank"
         class="subHeading text-lg hoverEffect">{loginText}</a
       >
+      <span class="subHeading text-lg hoverEffect">/</span>
+      <a
+        class="subHeading text-lg hoverEffect"
+        href="https://aktu.ac.in/circulars.html"
+        type="_blank">Circulars</a
+      >
     </div>
 
-    <!-- Burger Menu for Mobile -->
+    <!-- Mobile Navigation -->
     <div class="lg:hidden">
       <div class="burger-menu">
         <div class="burger-icon" id="burger-icon">
@@ -108,8 +161,41 @@ const currentPath = pathName.slice(1);
 
         <!-- Side Drawer -->
         <div class="side-drawer" id="side-drawer">
-          {navLinks.map((link) => <a href={link.href}>{link.name}</a>)}
-          {otherLinks.map((link) => <a href={link.href}>{link.name}</a>)}
+          {
+            navLinks.map((link) => (
+              <div class="mobile-nav-item">
+                <a href={link.href} class="mobile-nav-link">
+                  {link.name}
+                </a>
+                {link.subItems && (
+                  <div class="pl-4 mt-2 space-y-2">
+                    {link.subItems.map((subItem) => (
+                      <a href={subItem.href} class="mobile-nav-sublink">
+                        {subItem.name}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          }
+          <div class="mt-20 space-y-10">
+            <p>
+              <a
+                href="https://erp.aktu.ac.in/login.aspx"
+                type="_blank"
+                class="subHeading text-lg hoverEffect">{loginText}</a
+              >
+            </p>
+            <span class="subHeading text-lg hoverEffect">/</span>
+            <p>
+              <a
+                class="subHeading text-lg hoverEffect"
+                href="https://aktu.ac.in/circulars.html"
+                type="_blank">Circulars</a
+              >
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -128,6 +214,19 @@ const currentPath = pathName.slice(1);
 
   .active {
     @apply text-yellow-400;
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav-item {
+    @apply mb-4;
+  }
+
+  .mobile-nav-link {
+    @apply text-2xl font-semibold text-navy-blue;
+  }
+
+  .mobile-nav-sublink {
+    @apply block text-lg text-navy-blue opacity-80 hover:opacity-100;
   }
 
   /* Burger menu */
@@ -185,16 +284,8 @@ const currentPath = pathName.slice(1);
 
   .side-drawer a {
     text-decoration: none;
-    color: #333;
-    margin: 1rem 0;
-    font-size: 32px;
+    margin: 0.5rem 0;
     transition: color 0.2s;
-    font-weight: 600;
-    color: rgb(12 38 69);
-  }
-
-  .side-drawer a:hover {
-    color: #0077ff;
   }
 
   .backdrop {
@@ -231,5 +322,43 @@ const currentPath = pathName.slice(1);
     burgerIcon?.classList.remove("open");
     sideDrawer?.classList.remove("open");
     backdrop.classList.remove("open");
+  });
+</script>
+
+<script>
+  // Handle smooth scrolling for anchor links with precise offset
+  document.querySelectorAll('a[href^="/#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const hash = this.getAttribute("href").split("#")[1];
+      const element = document.getElementById(hash);
+
+      if (element) {
+        // If not on home page, navigate first
+        if (window.location.pathname !== "/") {
+          window.location.href = `/#${hash}`;
+          return;
+        }
+
+        // Get header height
+        const header = document.querySelector("header");
+        const headerHeight = header ? header.offsetHeight : 0;
+
+        // Calculate exact scroll position
+        const elementPosition =
+          element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight;
+
+        // Smooth scroll to element
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+
+        // Update URL without jump
+        history.pushState(null, null, `#${hash}`);
+      }
+    });
   });
 </script>
