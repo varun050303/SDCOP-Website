@@ -47,18 +47,21 @@ const courses = [
     duration: "4 Yrs.",
     courseType: "Full time",
     img: bPharmaImg,
+    href: "bpharm",
   },
   {
     name: "M.Pharma",
     duration: "2 Yrs.",
     courseType: "Full time",
     img: mPharmaImg,
+    href: "mpharm",
   },
   {
     name: "D.Pharma",
     duration: "2 Yrs.",
     courseType: "Full time",
     img: dPharmaImg,
+    href: "dpharm",
   },
 ];
 
@@ -272,7 +275,7 @@ images.sort((a, b) => {
                   <span class="text-white">&nbsp;{course.duration}</span>
                   <span class="text-white">[{course.courseType}]</span>
                 </p>
-                <a href="/courses">
+                <a href={`/courses#${course.href}`}>
                   <button class="px-6 py-3 text-center mt-6 text-sm button">
                     Learn More
                   </button>

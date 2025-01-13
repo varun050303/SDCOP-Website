@@ -23,9 +23,9 @@ const navLinks = [
   {
     name: "Admission",
     subItems: [
-      { name: "M.Pharm", href: "/courses" },
-      { name: "B.Pharm", href: "/courses" },
-      { name: "D.Pharm", href: "/courses" },
+      { name: "M.Pharm", href: "/courses#mpharm" },
+      { name: "B.Pharm", href: "/courses#bpharm" },
+      { name: "D.Pharm", href: "/courses#dpharm" },
     ],
   },
   {
@@ -163,13 +163,21 @@ const currentPath = pathName.slice(1);
           {
             navLinks.map((link) => (
               <div class="mobile-nav-item">
-                <a href={link.href} class="mobile-nav-link">
+                <a
+                  href={link.href}
+                  class="mobile-nav-link"
+                  onclick="closeDrawer()"
+                >
                   {link.name}
                 </a>
                 {link.subItems && (
                   <div class="pl-4 mt-2 space-y-2">
                     {link.subItems.map((subItem) => (
-                      <a href={subItem.href} class="mobile-nav-sublink">
+                      <a
+                        href={subItem.href}
+                        class="mobile-nav-sublink"
+                        onclick="closeDrawer()"
+                      >
                         {subItem.name}
                       </a>
                     ))}
@@ -322,6 +330,18 @@ const currentPath = pathName.slice(1);
     sideDrawer?.classList.remove("open");
     backdrop.classList.remove("open");
   });
+
+  function closeDrawer() {
+    const burgerIcon = document.getElementById("burger-icon");
+    const sideDrawer = document.getElementById("side-drawer");
+    const backdrop = document.getElementById("backdrop");
+
+    burgerIcon?.classList.remove("open");
+    sideDrawer?.classList.remove("open");
+    backdrop?.classList.remove("open");
+  }
+
+  window.closeDrawer = closeDrawer;
 </script>
 
 <script>
