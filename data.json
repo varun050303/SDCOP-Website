@@ -384,6 +384,46 @@
             "designation":"RESEARCH COORDINATOR, APOLLO HOSPITALS, NEW DELHI",
             "quote":"The unwavering commitment of SDCOP&VS to academic excellence and practical learning has endowed me with indispensable skills and knowledge for success. I proudly attribute my professional achievements to the robust foundation established during my time here.Thank you for fostering an environment that not only nurtures growth but also encourages innovation."
           }
-        ]
+        ],
+        "faculty":[
+            {"name": "Dr. Arvind Kumar", "department": "Pharmaceutical Chemistry", "position": "Director", "imgSrc":"faculty_39.jpg"},
+            {"name": "Dr. Vaishali", "department": "Pharmaceutical Chemistry", "position": "Professor", "imgSrc":"faculty_6.jpg"},
+            {"name": "Dr. Nisha Singh", "department": "Pharmaceutics", "position": "Professor","imgSrc":"faculty_2.jpg"},
+            {"name": "Dr. Bhuwanendra Singh", "department": "Pharmacognosy", "position": "Professor","imgSrc":"faculty_4.jpg"},
+            {"name": "Dr. Popin Kumar", "department": "Pharmaceutics", "position": "Professor","imgSrc":"faculty_3.jpg"},
+            {"name": "Dr. Anant Kumar", "department": "Pharmacology", "position": "Professor","imgSrc":"faculty_1.jpg"},
+            {"name": "Ms. Meenu Devi", "department": "Industrial Pharmacy", "position": "Associate Professor","imgSrc":"faculty_20.jpg"},
+            {"name": "Ms. Ritu Kaushik", "department": "Industrial Pharmacy", "position": "Associate Professor","imgSrc":"faculty_24.jpg"},
+            {"name": "Mr. Ishan Agarwal", "department": "Pharmacognosy", "position": "Associate Professor","imgSrc":"faculty_11.jpg"},
+            {"name": "Mrs. Pallavi", "department": "Pharmacognosy", "position": "Associate Professor","imgSrc":"faculty_31.jpg"},
+            {"name": "Mr. Harendra Singh", "department": "Pharmacology", "position": "Associate Professor","imgSrc":"faculty_10.jpg"},
+            {"name": "Mr. Asif Khan", "department": "Pharmaceutics", "position": "Associate Professor","imgSrc":"faculty_8.jpg"},
+            {"name": "Ms. Rabiya Praveen", "department": "Pharmaceutical Chemistry", "position": "Associate Professor","imgSrc":"faculty_32.jpg"},
+            {"name": "Mr. Kuldeep Saini", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_12.jpg"},
+            {"name": "Ms. Leeju Jain", "department": "Pharmacognosy", "position": "Assistant Professor","imgSrc":"faculty_23.jpg"},
+            {"name": "Ms. Anshu Panwar", "department": "Pharmacognosy", "position": "Assistant Professor","imgSrc":"faculty_21.jpg"},
+            {"name": "Ms. Khadija Khanam", "department": "Pharmacognosy", "position": "Assistant Professor","imgSrc":"faculty_22.jpg"},
+            {"name": "Mr. Sanjeev Ratan Tiwari", "department": "Pharmaceutics", "position": "Assistant Professor","imgSrc":"faculty_17.jpg"},
+            {"name": "Mr. Himanshu Pal", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_28.jpg"},
+            {"name": "Ms. Deepika Gupta", "department": "Pharmacognosy", "position": "Assistant Professor","imgSrc":"faculty_27.jpg"},
+            {"name": "Mr. Vivek Kumar", "department": "Pharmacognosy", "position": "Assistant Professor","imgSrc":"faculty_18.jpg"},
+            {"name": "Ms. Bushra Praven", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_26.jpg"},
+            {"name": "Mr. Ravi Kumar", "department": "Pharmacology", "position": "Assistant Professor","imgSrc":"faculty_16.jpg"},
+            {"name": "Mr. Anurag Kumar", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_7.jpg"},
+            {"name": "Dr. Mayank Chitransh", "department": "Pharmaceutics", "position": "Assistant Professor","imgSrc":"faculty_5.jpg"},
+            {"name": "Ms. Prachi Shukla", "department": "Pharmaceutics", "position": "Assistant Professor","imgSrc":"faculty_31.jpg"},
+            {"name": "Ms. Ritu Chhimwal", "department": "Pharmacology", "position": "Assistant Professor","imgSrc":"faculty_34.jpg"},
+            {"name": "Ms. Arun Bala", "department": "Pharmacology", "position": "Assistant Professor","imgSrc":"faculty_25.jpg"},
+            {"name": "Mr. Basant Kumar", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_9.jpg"},
+            {"name": "Mr. Zubair Ahmad", "department": "Pharmaceutics", "position": "Assistant Professor","imgSrc":"faculty_19.jpg"},
+            {"name": "Mr. Mubassir", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_14.jpg"},
+            {"name": "Mr. Naseem", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_15.jpg"},
+            {"name": "Ms. Rashmi Juneja", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_33.jpg"},
+            {"name": "Mr. Lalin", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_13.jpg"},
+            {"name": "Ms. Vaishno", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_36.jpg"},
+            {"name": "Ms. Nida", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_30.jpg"},
+            {"name": "Km. Parbha", "department": "Pharmaceutical Chemistry", "position": "Assistant Professor","imgSrc":"faculty_29.jpg"},
+            {"name": "Ms. Rubi Rani", "department": "Pharmacology", "position": "Assistant Professor","imgSrc":"faculty_35.jpg"}
+          ]
     }
 }
