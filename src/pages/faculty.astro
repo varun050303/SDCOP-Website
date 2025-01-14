@@ -684,8 +684,8 @@ import "../styles/global.css";
         tabs.forEach((tab) => tab.classList.add("hidden"));
 
         // Show the selected tab
-        const selectedYear = button.getAttribute("data-year");
-        document.getElementById(selectedYear).classList.remove("hidden");
+        const selectedYear = button.getAttribute("data-year")!;
+        document?.getElementById(selectedYear)?.classList.remove("hidden");
       });
     });
 
