@@ -23,7 +23,7 @@ const images = [
   {
     src: "hero-section/campus_students.jpg",
     alt: "Students on campus",
-    cardTitle: "25 Years of Experience",
+    cardTitle: "25 Years of Excellence",
     cardDescription:
       "SDCOP & VS emphasize practical knowledge and self-employment skills, preparing students for successful careers in pharmacy and related fields.",
     cardButtons: [
@@ -38,6 +38,14 @@ const images = [
         link: "/courses",
       },
     ],
+  },
+  {
+    src: "hero-section/conference.jpeg",
+    alt: "Students on campus",
+  },
+  {
+    src: "hero-section/shapat.jpeg",
+    alt: "Students on campus",
   },
 ];
 
@@ -145,7 +153,7 @@ const campusImages = await Promise.all(
 );
 
 // Sort images by their number if needed
-images.sort((a, b) => {
+campusImages.sort((a, b) => {
   const getNum = (src) => parseInt(src.match(/infrastructure_(\d+)/)[1]);
   return getNum(a.src) - getNum(b.src);
 });
@@ -153,7 +161,7 @@ images.sort((a, b) => {
 
 <Layout>
   <main class="flex-1">
-    <Carousel images={images} instanceId="hero-section" />
+    <Carousel images={images} instanceId="hero-section" useImage={false} />
     <Section background="green">
       <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
         <div class="space-y-12 p-10 order-2 md:order-1">

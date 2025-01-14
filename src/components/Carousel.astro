@@ -41,7 +41,7 @@ const uniqueId = (suffix: string) => `${instanceId}-${suffix}`;
   >
     {console.log("entered")}
     {
-      images.map((image, index) => (
+      images.map((image) => (
         <div class="w-full flex-shrink-0 relative flex place-content-center">
           {useImage ? (
             <Image
