@@ -18,6 +18,7 @@ import data from "../../data.json";
 import TestimonialCarousel from "../components/TestimonialCarousel.astro";
 import Recruiters from "../components/Recruiters.astro";
 import FacultyCarousel from "../components/FacultyCarousel.astro";
+import Marquee from "../components/Marquee.astro";
 
 const images = [
   {
@@ -161,6 +162,9 @@ campusImages.sort((a, b) => {
 
 <Layout>
   <main class="flex-1">
+    <Marquee
+      marqueeText="Marking 25 Years of Transforming Lives Through Quality Education."
+    />
     <Carousel images={images} instanceId="hero-section" useImage={false} />
     <Section background="green">
       <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
